@@ -1,0 +1,229 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+import { Picture } from "astro:assets";
+import imageHero from "../assets/images/house_hero.png";
+import CreditStep from "../components/CreditStep.astro";
+import imgCreditStep from "../assets/images/little_house.png";
+import personImage from "../assets/images/person.png";
+import CreditCard from "../components/CreditCard.astro";
+import houseCredit from "../assets/images/house_credit.png";
+import billete from "../assets/images/billete.png";
+import GrcLogo from "../assets/grc_logo.svg";
+import Faq from "../components/Faq.astro";
+const title =
+	"Mareh Asesores - Encuentra la mejor hipoteca para tu hogar con expertos";
+---
+
+<MainLayout title={title}>
+	<main class="mt-20">
+		<section class="main-section pb-10">
+			<div class="w-[90%] mx-auto">
+				<h1 class="text-4xl font-semibold leading-[1.5]">
+					Estás a un paso de cumplir tu sueño
+				</h1>
+				<span class="mt-5 block text-zinc-200">
+					Te ayudamos a hacerlo posible con el crédito hipotecario que
+					más se ajusta a tus necesidades y expectativas
+				</span>
+				<a
+					class="mt-5 border border-zinc-600 w-full py-3 rounded-md font-semibold flex justify-center items-center hover:bg-zinc-800 hover:transition duration-500"
+				>
+					Inicia tu trámite
+					<i class="ri-arrow-right-up-line"></i>
+				</a>
+
+				<div class="mt-10">
+					<Picture
+						src={imageHero}
+						formats={["avif", "webp"]}
+						alt="Hero Image"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="contenedor">
+				<div class="w-60 mx-auto">
+					<Picture src={personImage} alt="Person image" />
+				</div>
+
+				<h2
+					class="subtitle text-sky-700 font-semibold text-center mt-5"
+				>
+					¿Quiénes somos y por qué elegirnos?
+				</h2>
+
+				<p>
+					Llevamos más de 10 años ayudando a hacer realidad proyectos
+					y la creación de patrimonio, con un equipo de profesionales
+					expertos y certificados en el sector.
+				</p>
+
+				<ul class="text-sm mt-3 space-y-3 text-sky-700 font-semibold">
+					<li>
+						<i class="ri-verified-badge-fill"></i>
+						El 99% de nuestros clientes quedaron satisfechos con su servicio.
+					</li>
+
+					<li>
+						<i class="ri-verified-badge-fill"></i>
+						Llevamos más de 100 millones de pesos MX en financiamiento.
+					</li>
+
+					<li>
+						<i class="ri-verified-badge-fill"></i>
+						Un asesor profesional se te asigna para ayudarte con todo
+						tu trámite y dudas, sin ningun costo.
+					</li>
+
+					<li>
+						<i class="ri-verified-badge-fill"></i>
+						Se te ofrecen las mejores alternativas del mercado en base
+						a tu perfil.
+					</li>
+
+					<li>
+						<i class="ri-verified-badge-fill"></i>
+						Atención en el horario de tu preferencia.
+					</li>
+
+					<li>
+						<i class="ri-verified-badge-fill"></i>
+						Somos un equipo actualizado con las nuevas tecnologías y
+						herramientas que permiten que tu trámite sea mucho más fácil
+						y rápido, a diferencia de realizar tu trámite en una sucursal
+						bancaria.
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<div class="contenedor">
+				<div class="flex justify-center">
+					<span
+						class="text-center border border-sky-700 rounded px-4 py-1 text-sky-700 font-semibold mb-3"
+						>Pasos</span
+					>
+				</div>
+				<h2 class="subtitle text-center">
+					Tu crédito hipotecario en 3 pasos
+				</h2>
+
+				<section class="credit-steps-section space-y-3">
+					<div class="w-40 mx-auto">
+						<Picture
+							src={imgCreditStep}
+							formats={["avif", "webp"]}
+							alt="Credit steps Image"
+						/>
+					</div>
+
+					<CreditStep number="01" title="Ingreso y autorización">
+						Despues de un breve entrevista para conocer tu perfil y
+						simular tu crédito, ingresamos tu expediente a banco y
+						se obtiene la autorización.
+					</CreditStep>
+
+					<CreditStep number="02" title="Avalúo y notaría">
+						Se realiza un avalúo al inmueble que elegiste y se
+						asigna a una notaría.
+					</CreditStep>
+
+					<CreditStep number="03" title="Firma de escrituras">
+						Finalmente firmas las escrituras de tu nuevo hogar 🎉
+					</CreditStep>
+				</section>
+			</div>
+		</section>
+
+		<section class="main-section">
+			<div class="contenedor">
+				<h2 class="subtitle text-center">
+					Todas las opciones de crédito
+				</h2>
+				<span class="text-sm text-center text-zinc-200 mb-5 block">
+					Ya sea que quieras comprar tu nueva casa, invertir o crear
+					un nuevo proyecto
+				</span>
+
+				<section class="space-y-6">
+					<CreditCard
+						imagePath={houseCredit}
+						title="Créditos para comprar vivienda"
+					>
+						Financia la compra de tu vivienda con nuestros créditos
+						de adquisición. Tasas competitivas, plazos flexibles y
+						asesoría personalizada para que encuentres la mejor
+						opción.
+					</CreditCard>
+
+					<CreditCard imagePath={billete} title="Crédito de liquidez">
+						Accede al efectivo que necesitas con nuestro crédito de
+						liquidez. Ideal para cubrir gastos urgentes o proyectos
+						personales.
+					</CreditCard>
+
+					<div class="border border-zinc-500 p-8 rounded-md">
+						<div class="flex justify-center">
+							<GrcLogo width={70} height={70} />
+						</div>
+						<h3 class="font-semibold mt-5 mb-2 text-center">
+							Encuentra tu hogar ideal con GRC
+						</h3>
+						<p class="text-sm text-zinc-200 text-center">
+							¿Buscas casa? Nuestros aliados de GRC Inmobiliaria
+							te ayudaran a encontrar las mejores opciones del
+							mercado, para hacer realidad tu sueño de tener un
+							hogar.
+						</p>
+						<a
+							href=""
+							class="border border-zinc-500 mt-3 flex justify-center py-1 rounded-md text-sm"
+						>
+							Ir al sitio web
+						</a>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<section class="bg-zinc-100">
+			<div class="contenedor">
+				<h2 class="subtitle text-center">Preguntas frecuentes</h2>
+
+				<div class="space-y-5">
+					<Faq title="¿El trámite es gratuito?">
+						Nuestro servicio no tiene ningun costo. Nosotros nos
+						encargamos de gestionar todo el proceso sin que tengas
+						que preocuparte por honorarios adicionales. Queremos que
+						te concentres en lo más importante: encontrar la casa de
+						tus sueños.
+					</Faq>
+
+					<Faq title="¿Cuál es el mejor crédito hipotecario?">
+						El mejor crédito hipotecario depende de tus necesidades.
+						Consideramos tasas, plazos, costos y condiciones para
+						ofrecerte opciones personalizadas. Trabajamos con
+						múltiples instituciones para ayudarte a encontrar la
+						opción más favorable. ¿Tienes dudas o necesidades
+						específicas? Contáctanos, estamos aquí para asesorarte.
+						🏡💼
+					</Faq>
+
+					<Faq title="¿En cuánto tiempo queda autorizado mi crédito?">
+						El tiempo de autorización de un crédito hipotecario
+						varía según la institución y el caso, pero suele tomar
+						entre 24 y 72 horas. En Mareh, agilizamos el proceso y
+						te mantenemos informado en cada paso. ¿Preguntas?
+						¡Estamos aquí para ayudarte! 🕒🏡
+					</Faq>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	
+</MainLayout>

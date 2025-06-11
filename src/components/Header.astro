@@ -1,0 +1,46 @@
+---
+import Logo from '../components/Logo.astro';
+import marehLogo from "../assets/logomareh_blanco.svg";
+---
+
+<header class="flex justify-between items-center px-5 h-20 fixed top-0 left-0 right-0 header" id="header">
+    <div class="w-20">
+        <img src={marehLogo.src} alt="Logo Mareh" id="header-logo">
+    </div>
+
+    <button type="button" class="text-3xl menu-button" id="menu-button" aria-label="Botón de Menú">
+        <i class="ri-menu-line" id="menu-button-icon"></i>
+    </button>
+
+    <nav class="menu-nav">
+        <ul class="link-list space-y-3">
+            <li><a href="" class="nav-link">Inicio</a></li>
+            <li><a href="" class="nav-link">Nosotros</a></li>
+            <li><a href="" class="nav-link">Créditos</a></li>
+            <li><a href="" class="nav-link">Desarrollos</a></li>
+            <li><a href="" class="nav-link">Promociones</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const menuButtonIcon = document.getElementById('menu-button-icon');
+    const menuNav = document.querySelector('.menu-nav');
+    const linkList = document.querySelector('.link-list');
+    const header = document.getElementById('header');
+    const headerLogo = document.getElementById('header-logo') as HTMLElement;
+
+    menuButton?.addEventListener('click', () => {
+        toggleMenuActions();
+    });
+
+    function toggleMenuActions() {
+        menuNav?.classList.toggle('menu-nav--open');
+        linkList?.classList.toggle('link-list--show');
+        document.body.classList.toggle('overflow-hidden');
+        menuButtonIcon?.classList.toggle('ri-menu-line');
+        menuButtonIcon?.classList.toggle('ri-close-line');
+        header?.classList.toggle('isOpen');
+    }
+</script>

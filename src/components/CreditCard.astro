@@ -1,0 +1,16 @@
+---
+const { imagePath, title, link } = Astro.props;
+import { Picture } from "astro:assets";
+---
+
+<div class="border border-zinc-500 p-8 rounded-md">
+    <div class="w-30 mx-auto">
+        <Picture src={imagePath} alt="Credit Image" />
+
+    </div>
+    <h3 class="font-semibold mb-2 text-center">{title}</h3>
+    <p class="text-sm text-zinc-200 text-center">
+        <slot />
+    </p>
+    <a href="" class="border border-zinc-500 mt-3 flex justify-center py-1 rounded-md text-sm">Más información</a>
+</div>

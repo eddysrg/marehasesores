@@ -1,0 +1,44 @@
+---
+const { title } = Astro.props;
+---
+<section>
+    <header class="bg-white shadow-md flex items-center justify-between p-3 cursor-pointer rounded-md faq-header">
+        <p class="text-sm text-zinc-700">{title}</p>
+        <i class="ri-add-line faq-icon"></i>
+    </header>
+
+    <div class="faq-text">
+        <p class="text-sm p-3 text-zinc-700">
+            <slot />
+        </p>
+    </div>
+</section>
+
+<style>
+    .faq-text {
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height .5s ease-out;
+    }
+
+    .fa-text--active {
+        max-height: 300px;
+    }
+</style>
+
+<script>
+    const faqHeaders = document.querySelectorAll('.faq-header');
+
+    faqHeaders.forEach( faqHeader => {
+        faqHeader.addEventListener('click', () => {
+            const faqText = faqHeader.nextElementSibling;
+            const faqIcon = faqHeader.querySelector('.faq-icon');
+
+            if(faqText?.classList.contains('faq-text')) {
+                faqText.classList.toggle('fa-text--active');
+                faqIcon?.classList.toggle('ri-add-line');
+                faqIcon?.classList.toggle('ri-subtract-line');
+            }
+        });
+    } );
+</script>
