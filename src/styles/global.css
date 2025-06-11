@@ -8,6 +8,11 @@
 /* Header styles */
 
 .header {
+    background-color: transparent;
+    transition: background-color 0.5s ease;
+}
+
+.scrolled {
     background-color: black;
 }
 
@@ -84,6 +89,7 @@
     background: #0a4c66;
     background: linear-gradient(0deg,rgba(10, 76, 102, 1) 0%, rgba(0, 0, 0, 1) 100%);
     color: white;
+    padding-block-start: 8rem;
 }
 
 .subtitle {
