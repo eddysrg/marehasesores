@@ -1,6 +1,7 @@
 ---
 import Logo from '../components/Logo.astro';
 import marehLogo from "../assets/logomareh_blanco.svg";
+import Submenu from './Submenu.astro';
 ---
 
 <header class="flex justify-between items-center px-5 h-20 fixed top-0 left-0 right-0 header" id="header">
@@ -16,7 +17,7 @@ import marehLogo from "../assets/logomareh_blanco.svg";
         <ul class="link-list space-y-3">
             <li><a href="" class="nav-link">Inicio</a></li>
             <li><a href="" class="nav-link">Nosotros</a></li>
-            <li><a href="" class="nav-link">Créditos</a></li>
+            <Submenu />
             <li><a href="" class="nav-link">Desarrollos</a></li>
             <li><a href="" class="nav-link">Promociones</a></li>
         </ul>
@@ -51,6 +52,6 @@ import marehLogo from "../assets/logomareh_blanco.svg";
             header?.classList.remove('scrolled');
         }
     });
-    
+
 </script>
 

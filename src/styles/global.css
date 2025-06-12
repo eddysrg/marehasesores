@@ -27,6 +27,7 @@
     transform: translateX(-100%);
     transition: all 0.5s ease;
     padding: 1.5rem;
+    overflow-y: scroll;
 }
 
 .menu-button {
@@ -82,6 +83,16 @@
     top: 0;
     left: 0;
 } */
+
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease-out;
+}
+
+.submenu--open {
+    max-height: 300px;
+} 
 
 /* End Header styles */
 
