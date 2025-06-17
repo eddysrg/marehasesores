@@ -4,46 +4,206 @@ import marehLogo from "../assets/logomareh_blanco.svg";
 import Submenu from './Submenu.astro';
 ---
 
-<header class="flex justify-between items-center px-5 h-20 fixed top-0 left-0 right-0 header" id="header">
+<header class="header" id="header">
     <div class="w-20">
         <img src={marehLogo.src} alt="Logo Mareh" id="header-logo">
     </div>
 
-    <button type="button" class="text-3xl menu-button" id="menu-button" aria-label="Botón de Menú">
-        <i class="ri-menu-line" id="menu-button-icon"></i>
+    <button type="button" class="menu-button" id="menu-button" aria-label="Botón de Menú">
+        <i class="ri-menu-line" id="menu-button__icon"></i>
     </button>
 
-    <nav class="menu-nav">
-        <ul class="link-list space-y-3">
-            <li><a href="" class="nav-link">Inicio</a></li>
-            <li><a href="" class="nav-link">Nosotros</a></li>
-            <Submenu />
-            <li><a href="" class="nav-link">Desarrollos</a></li>
-            <li><a href="" class="nav-link">Promociones</a></li>
-        </ul>
+    <nav class="nav">
+        <ul class="nav__list">
+            <li><a href="" class="nav__link">Inicio</a></li>
+            <li><a href="" class="nav__link">Sobre nosotros</a></li>
+            <li class="nav__submenu-container">
+                <div class="nav__link nav__link--submenu">
+                    Créditos<i class="ri-arrow-down-s-line"></i>
+                </div>
+                
+                <ul class="nav__submenu">
+                    <li>
+                        <a href="" class="nav__link"><i class="ri-arrow-right-double-line"></i>Crédito de adquisición</a>
+                    </li>
+                    <li>
+                        <a href="" class="nav__link"><i class="ri-arrow-right-double-line"></i>Mejora de hipoteca</a>
+                    </li>
+                    <li>
+                        <a href="" class="nav__link"><i class="ri-arrow-right-double-line"></i>Crédito de liquidez</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="" class="nav__link">Desarrollo</a></li>
+            <li><a href="" class="nav__link">Promociones</a></li>
+            <li><a href="" class="nav__link">Simular crédito</a></li>
+        </ul>   
     </nav>
 </header>
 
+<style>
+
+    .header {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: 1.25rem;
+        height: 5rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        transition: all 0.5s ease;
+    }
+
+    .menu-button {
+        color: white;
+        font-size: 25px;
+
+        @media(width >= 1024px) {
+            display: none;
+        }
+    }
+
+    .nav {
+        @media(width < 1024px) {
+            width: 100%;
+            height: calc(100dvh - 5rem);
+            overflow: auto;
+            background: #0a4c66;
+            background: linear-gradient(0deg,rgba(10, 76, 102, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            position: absolute;
+            top: 5rem;
+            left: 0;
+            transform: translateX(-100%);
+            transition: all 0.4s ease-in;
+        }
+    }
+
+    .nav--open {
+        @media(width < 1024px) {
+            transform: translateX(0);
+        }
+    }
+
+    .nav__list {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        @media(width >= 1024px) {
+            flex-direction: row;
+        }
+    }
+
+    .nav__link {
+        display: inline-block;
+        width: 100%;
+        color: #e5e5e5;
+        padding-block: 12px;
+        padding-inline: 15px;
+        transition: background-color 0.5s ease, border-radius 0.5s ease;
+
+        &:hover {
+            background-color: #588696;
+            border-radius: 6px;
+        }
+    }
+
+    @media(width >= 1024px) {
+
+        .nav__link {
+            transition: color 0.4s ease;
+        }
+
+        .nav__link:hover {
+            background-color: unset;
+            color: #588696;
+        }
+    }
+
+    .nav__link--submenu {
+        cursor: pointer;
+    }
+
+    .nav__submenu-container {
+        position: relative;
+    }
+
+    .nav__submenu {
+        margin-top: 10px;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 12px;
+        max-height: 0;
+        overflow: hidden;
+        @media(width < 1024px) {
+            transition: max-height 0.8s ease-out, overflow 0.8s ease-out;
+        }
+
+        @media(width >= 1024px) {
+            position: absolute;
+            max-height: 0;
+            top: 0;
+            left: 0;
+            background-color: #094C66;
+            margin-top: 0;
+            padding: 10px;
+            width: 15rem;
+            transform: translateY(-200%);
+        }
+    }
+
+    .nav__submenu--open {
+        max-height: 300px;
+
+        @media(width >= 1024px) {
+            max-height: 1000px;
+            top: 4rem;
+            transform: translateY(0);
+        }
+    }
+
+    /* Utilities */
+    .scrolled {
+        background-color: #0a4c66;
+    }
+</style>
+
 <script>
     const menuButton = document.getElementById('menu-button');
-    const menuButtonIcon = document.getElementById('menu-button-icon');
-    const menuNav = document.querySelector('.menu-nav');
+    const menuButtonIcon = document.getElementById('menu-button__icon');
+    const nav = document.querySelector('.nav');
     const linkList = document.querySelector('.link-list');
     const header = document.getElementById('header');
     const headerLogo = document.getElementById('header-logo') as HTMLElement;
+    //Submenu variables
+    const submenuBtn = document.querySelector('.nav__link--submenu');
+    const submenuNav = document.querySelector('.nav__submenu');
 
     menuButton?.addEventListener('click', () => {
-        toggleMenuActions();
-    });
-
-    function toggleMenuActions() {
-        menuNav?.classList.toggle('menu-nav--open');
-        linkList?.classList.toggle('link-list--show');
         document.body.classList.toggle('overflow-hidden');
         menuButtonIcon?.classList.toggle('ri-menu-line');
         menuButtonIcon?.classList.toggle('ri-close-line');
-        header?.classList.toggle('isOpen');
-    }
+        nav?.classList.toggle('nav--open');
+    });
+
+    // function toggleMenuActions() {
+    //     menuNav?.classList.toggle('menu-nav--open');
+    //     linkList?.classList.toggle('link-list--show');
+    //     document.body.classList.toggle('overflow-hidden');
+    //     menuButtonIcon?.classList.toggle('ri-menu-line');
+    //     menuButtonIcon?.classList.toggle('ri-close-line');
+    //     header?.classList.toggle('isOpen');
+    // }
+
+    submenuBtn?.addEventListener('click', () => {
+        submenuNav?.classList.toggle('nav__submenu--open')
+    });
 
     window.addEventListener('scroll', function() {
         if(this.window.scrollY > 45) {

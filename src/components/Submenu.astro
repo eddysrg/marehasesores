@@ -1,41 +1,52 @@
-<li>
-    <button type="button" aria-label="Botón para abrir submenu" class="nav-link flex items-center w-full submenu-btn">
+<li class="relative">
+    <button
+        type="button"
+        aria-label="Botón para abrir submenu"
+        class="nav-link submenu-btn"
+    >
         Créditos
         <i class="ri-arrow-drop-down-line submenu-icon text-3xl leading-0"></i>
     </button>
 
-    <div class="px-3 mt-2 submenu">
-        <ul class="space-y-3">
-            <li>
-                <a href="" class="text-white text-xs hover:bg-[#14333e] hover:duration-500 flex gap-1 p-2 rounded-md">
-                    <i class="ri-arrow-right-double-line"></i>
-                    Crédito de Adquisición
-                </a>
-            </li>
-            <li>
-                <a href="" class="text-white text-xs hover:bg-[#14333e] hover:duration-500 flex gap-1 p-2 rounded-md">
-                    <i class="ri-arrow-right-double-line"></i>
-                    Mejora de hipoteca
-                </a>
-            </li>
-            <li>
-                <a href="" class="text-white text-xs hover:bg-[#14333e] hover:duration-500 flex gap-1 p-2 rounded-md">
-                    <i class="ri-arrow-right-double-line"></i>
-                    Crédito de liquidez
-                </a>
-            </li>
-        </ul>
-    </div>
+    <ul class="space-y-3">
+        <li>
+            <a
+                href=""
+                class="text-white text-xs hover:bg-[#14333e] hover:duration-500 flex gap-1 p-2 rounded-md"
+            >
+                <i class="ri-arrow-right-double-line"></i>
+                Crédito de Adquisición
+            </a>
+        </li>
+        <li>
+            <a
+                href=""
+                class="text-white text-xs hover:bg-[#14333e] hover:duration-500 flex gap-1 p-2 rounded-md"
+            >
+                <i class="ri-arrow-right-double-line"></i>
+                Mejora de hipoteca
+            </a>
+        </li>
+        <li>
+            <a
+                href=""
+                class="text-white text-xs hover:bg-[#14333e] hover:duration-500 flex gap-1 p-2 rounded-md"
+            >
+                <i class="ri-arrow-right-double-line"></i>
+                Crédito de liquidez
+            </a>
+        </li>
+    </ul>
 </li>
 
 <script>
-    const submenuBtn = document.querySelector('.submenu-btn');
-    const submenu = document.querySelector('.submenu');
-    const iconSubmenu = document.querySelector('.submenu-icon');
+    const submenuBtn = document.querySelector(".submenu-btn");
+    const submenu = document.querySelector(".submenu");
+    const iconSubmenu = document.querySelector(".submenu-icon");
 
-    submenuBtn?.addEventListener('click', () => {
-        submenu?.classList.toggle('submenu--open');
-        iconSubmenu?.classList.toggle('ri-arrow-drop-down-line');
-        iconSubmenu?.classList.toggle('ri-arrow-drop-up-line');
+    submenuBtn?.addEventListener("click", () => {
+        submenu?.classList.toggle("submenu--open");
+        iconSubmenu?.classList.toggle("ri-arrow-drop-down-line");
+        iconSubmenu?.classList.toggle("ri-arrow-drop-up-line");
     });
 </script>
