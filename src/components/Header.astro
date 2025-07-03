@@ -1,212 +1,111 @@
 ---
-import Logo from '../components/Logo.astro';
-import marehLogo from "../assets/logomareh_blanco.svg";
-import Submenu from './Submenu.astro';
+import Logo from "../assets/logomareh_blanco.svg";
 ---
 
-<header class="header" id="header">
-    <div class="w-20">
-        <img src={marehLogo.src} alt="Logo Mareh" id="header-logo">
-    </div>
-
-    <button type="button" class="menu-button" id="menu-button" aria-label="Botón de Menú">
-        <i class="ri-menu-line" id="menu-button__icon"></i>
-    </button>
-
-    <nav class="nav">
-        <ul class="nav__list">
-            <li><a href="" class="nav__link">Inicio</a></li>
-            <li><a href="" class="nav__link">Sobre nosotros</a></li>
-            <li class="nav__submenu-container">
-                <div class="nav__link nav__link--submenu">
-                    Créditos<i class="ri-arrow-down-s-line"></i>
-                </div>
-                
-                <ul class="nav__submenu">
-                    <li>
-                        <a href="" class="nav__link"><i class="ri-arrow-right-double-line"></i>Crédito de adquisición</a>
-                    </li>
-                    <li>
-                        <a href="" class="nav__link"><i class="ri-arrow-right-double-line"></i>Mejora de hipoteca</a>
-                    </li>
-                    <li>
-                        <a href="" class="nav__link"><i class="ri-arrow-right-double-line"></i>Crédito de liquidez</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="" class="nav__link">Desarrollo</a></li>
-            <li><a href="" class="nav__link">Promociones</a></li>
-            <li><a href="" class="nav__link">Simular crédito</a></li>
-        </ul>   
-    </nav>
-</header>
-
 <style>
-
-    .header {
-        background-color: transparent;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-inline: 1.25rem;
-        height: 5rem;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        transition: all 0.5s ease;
-    }
-
-    .menu-button {
-        color: white;
-        font-size: 25px;
-
-        @media(width >= 1024px) {
-            display: none;
+    .submenu {
+        @media(width < 64rem) {
+            margin-left: calc(var(--spacing) * 5);
+            max-height: 0;
+            overflow: hidden;
+            transition-property: max-height;
+            transition-timing-function: var(--tw-ease, var(--default-transition-timing-function) /* cubic-bezier(0.4, 0, 0.2, 1) */);
+            transition-duration: 700ms;
         }
-    }
 
-    .nav {
-        @media(width < 1024px) {
-            width: 100%;
-            height: calc(100dvh - 5rem);
-            overflow: auto;
-            background: #0a4c66;
-            background: linear-gradient(0deg,rgba(10, 76, 102, 1) 0%, rgba(0, 0, 0, 1) 100%);
+        @media (width >= 1024px) {
+            width: 250%;
+            background-color: #013f91;
             position: absolute;
-            top: 5rem;
+            top: 6rem;
             left: 0;
-            transform: translateX(-100%);
-            transition: all 0.4s ease-in;
-        }
-    }
-
-    .nav--open {
-        @media(width < 1024px) {
-            transform: translateX(0);
-        }
-    }
-
-    .nav__list {
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        @media(width >= 1024px) {
-            flex-direction: row;
-        }
-    }
-
-    .nav__link {
-        display: inline-block;
-        width: 100%;
-        color: #e5e5e5;
-        padding-block: 12px;
-        padding-inline: 15px;
-        transition: background-color 0.5s ease, border-radius 0.5s ease;
-
-        &:hover {
-            background-color: #588696;
+            transform: scale(0);
+            padding-inline: 1rem;
+            padding-block: 12px;
             border-radius: 6px;
         }
     }
 
-    @media(width >= 1024px) {
-
-        .nav__link {
-            transition: color 0.4s ease;
-        }
-
-        .nav__link:hover {
-            background-color: unset;
-            color: #588696;
-        }
-    }
-
-    .nav__link--submenu {
-        cursor: pointer;
-    }
-
-    .nav__submenu-container {
-        position: relative;
-    }
-
-    .nav__submenu {
-        margin-top: 10px;
-        padding-left: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        font-size: 12px;
-        max-height: 0;
-        overflow: hidden;
-        @media(width < 1024px) {
-            transition: max-height 0.8s ease-out, overflow 0.8s ease-out;
+    .open-menu {
+        @media(width < 64rem) {
+            max-height: 500px;
         }
 
         @media(width >= 1024px) {
-            position: absolute;
-            max-height: 0;
-            top: 0;
-            left: 0;
-            background-color: #094C66;
-            margin-top: 0;
-            padding: 10px;
-            width: 15rem;
-            transform: translateY(-200%);
+            transform: scale(1);
         }
     }
 
-    .nav__submenu--open {
-        max-height: 300px;
-
-        @media(width >= 1024px) {
-            max-height: 1000px;
-            top: 4rem;
-            transform: translateY(0);
-        }
+    .header {
+        transition: background-color 0.5s ease;
     }
 
-    /* Utilities */
     .scrolled {
-        background-color: #0a4c66;
+        background-color: #013f91; 
     }
 </style>
 
-<script>
-    const menuButton = document.getElementById('menu-button');
-    const menuButtonIcon = document.getElementById('menu-button__icon');
-    const nav = document.querySelector('.nav');
-    const linkList = document.querySelector('.link-list');
-    const header = document.getElementById('header');
-    const headerLogo = document.getElementById('header-logo') as HTMLElement;
-    //Submenu variables
-    const submenuBtn = document.querySelector('.nav__link--submenu');
-    const submenuNav = document.querySelector('.nav__submenu');
+<header class="fixed top-0 left-0 w-full header">
+    <nav class="w-11/12 lg:w-10/12 mx-auto h-full lg:flex lg:justify-between relative">
+        <section class="flex justify-between py-4">
+            <Logo width={90} height={50} />
 
-    menuButton?.addEventListener('click', () => {
-        document.body.classList.toggle('overflow-hidden');
-        menuButtonIcon?.classList.toggle('ri-menu-line');
-        menuButtonIcon?.classList.toggle('ri-close-line');
-        nav?.classList.toggle('nav--open');
+            <button type="button" id="btn-menu" class="lg:hidden">
+                <i class="btn-menu__icon ri-menu-3-line text-2xl text-white"></i>
+            </button>
+        </section>
+
+        <ul class="text-sm text-white max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-[max-height] lg:transition-none ease duration-700 lg:flex" id="menu-nav">
+            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Inicio</a></li>
+            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Nosotros</a></li>
+            <li class="relative">
+                <button type="button" id="submenu-btn__one" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md w-full lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">
+                    Créditos <i class="ri-arrow-down-s-fill"></i>
+                </button>
+
+                <ul class="submenu" id="submenu-one">
+                    <li><a href="" class="flex items-center px-4 py-2 mb-3 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Crédito de adquisición</a></li>
+                    <li><a href="" class="flex items-center px-4 py-2 mb-3 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Crédito de liquidez</a></li>
+                    <li><a href="" class="flex items-center px-4 py-2 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Mejora de hipoteca</a></li>
+                </ul>
+            </li>
+            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Contacto</a></li>
+            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Noticias</a></li>
+            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Blog</a></li>
+            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300 xl:hidden">Simula tu crédito</a></li>
+        </ul>
+
+        <a href="" class="hidden xl:inline-flex xl:bg-white xl:self-center xl:py-3 xl:px-5 xl:rounded-md xl:font-medium xl:text-sm xl:hover:bg-neutral-200 xl:transition-[background-color] xl:duration-300">Simula tu crédito</a>
+    </nav>
+</header>
+
+<script>
+    const btnMenu = document.getElementById('btn-menu');
+    const btnMenuIcon = document.querySelector('.btn-menu__icon');
+    const submenuBtnOne = document.getElementById('submenu-btn__one');
+    const menuNav = document.getElementById('menu-nav');
+    const submenuOne = document.getElementById('submenu-one');
+    const header = document.querySelector('.header');
+
+    btnMenu?.addEventListener('click', () => {
+        menuNav?.classList.toggle('open-menu');
+        btnMenuIcon?.classList.toggle('ri-menu-3-line');
+        btnMenuIcon?.classList.toggle('ri-close-line');
     });
 
-    // function toggleMenuActions() {
-    //     menuNav?.classList.toggle('menu-nav--open');
-    //     linkList?.classList.toggle('link-list--show');
-    //     document.body.classList.toggle('overflow-hidden');
-    //     menuButtonIcon?.classList.toggle('ri-menu-line');
-    //     menuButtonIcon?.classList.toggle('ri-close-line');
-    //     header?.classList.toggle('isOpen');
-    // }
+    submenuBtnOne?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        submenuOne?.classList.toggle('open-menu');
+    }); 
 
-    submenuBtn?.addEventListener('click', () => {
-        submenuNav?.classList.toggle('nav__submenu--open')
+    document.addEventListener('click', (event) => {
+        if(!submenuOne?.contains(event.target as Node) && submenuOne?.classList.contains('open-menu')) {
+            submenuOne.classList.remove('open-menu');
+        }
     });
 
     window.addEventListener('scroll', function() {
-        if(this.window.scrollY > 45) {
+        if(window.scrollY > 50) {
             header?.classList.add('scrolled');
         } else {
             header?.classList.remove('scrolled');
@@ -214,4 +113,3 @@ import Submenu from './Submenu.astro';
     });
 
 </script>
-

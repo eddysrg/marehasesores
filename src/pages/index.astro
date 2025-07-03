@@ -1,13 +1,13 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Header from "../components/Header.astro";
 import { Picture } from "astro:assets";
 import imageHero from "../assets/images/house_hero.png";
 import CreditStep from "../components/CreditStep.astro";
 import imgCreditStep from "../assets/images/little_house.png";
-import personImage from "../assets/images/person.png";
+import aboutUsImage from "../assets/images/aboutusimage.jpg";
 import CreditCard from "../components/CreditCard.astro";
 import houseCredit from "../assets/images/house_credit.png";
+import percentage from "../assets/images/percentage.png";
 import billete from "../assets/images/billete.png";
 import GrcLogo from "../assets/grc_logo.svg";
 import Faq from "../components/Faq.astro";
@@ -17,156 +17,201 @@ const title =
 
 <MainLayout title={title}>
 	<main>
-		<section class="main-section pb-10">
-			<div class="w-[90%] mx-auto">
-				<h1 class="text-4xl font-semibold leading-[1.5]">
-					Estás a un paso de cumplir tu sueño
-				</h1>
-				<span class="mt-5 block text-zinc-200">
-					Te ayudamos a hacerlo posible con el crédito hipotecario que
-					más se ajusta a tus necesidades y expectativas
-				</span>
-				<a
-					class="mt-5 border border-zinc-600 w-full py-3 rounded-md font-semibold flex justify-center items-center hover:bg-zinc-800 hover:transition duration-500"
-				>
-					Inicia tu trámite
-					<i class="ri-arrow-right-up-line"></i>
-				</a>
+		<section class="main-section">
+			<div class="w-[90%] mx-auto hero">
+				<section>
+					<h1 class="hero__title">
+						Estás a un paso de cumplir tu sueño
+					</h1> 
+					<span class="hero__span">
+						Te ayudamos a hacerlo posible con el crédito hipotecario
+						que más se ajusta a tus necesidades y expectativas
+					</span>
+					<a class="hero__link">
+						Inicia tu trámite
+						<i class="ri-arrow-right-up-line"></i>
+					</a>
+				</section>
 
-				<div class="mt-10">
-					<Picture
-						src={imageHero}
-						formats={["avif", "webp"]}
-						alt="Hero Image"
-					/>
-				</div>
+				<section class="hero__section-two">
+					<div class="mt-10 hero__image-container">
+						<Picture
+							src={imageHero}
+							formats={["avif", "webp"]}
+							alt="Hero Image"
+						/>
+					</div>
+				</section>
 			</div>
 		</section>
 
 		<section>
-			<div class="contenedor">
-				<div class="w-60 mx-auto">
-					<Picture src={personImage} alt="Person image" />
+			<div class="contenedor ab-us">
+				<div class="ab-us__image-container">
+					<Picture src={aboutUsImage} alt="about us image" class="rounded-2xl" />
 				</div>
 
-				<h2
-					class="subtitle text-sky-700 font-semibold text-center mt-5"
-				>
-					¿Quiénes somos y por qué elegirnos?
-				</h2>
+				<section>
+					<h2 class="subtitle ab-us__title">
+						¿Quiénes somos y por qué elegirnos?
+					</h2>
 
-				<p>
-					Llevamos más de 10 años ayudando a hacer realidad proyectos
-					y la creación de patrimonio, con un equipo de profesionales
-					expertos y certificados en el sector.
-				</p>
+					<p>
+						Llevamos más de 10 años ayudando a hacer realidad proyectos
+						y la creación de patrimonio, con un equipo de profesionales
+						expertos y certificados en el sector.
+					</p>
 
-				<ul class="text-sm mt-3 space-y-3 text-sky-700 font-semibold">
-					<li>
-						<i class="ri-verified-badge-fill"></i>
-						El 99% de nuestros clientes quedaron satisfechos con su servicio.
-					</li>
-
-					<li>
-						<i class="ri-verified-badge-fill"></i>
-						Llevamos más de 100 millones de pesos MX en financiamiento.
-					</li>
-
-					<li>
-						<i class="ri-verified-badge-fill"></i>
-						Un asesor profesional se te asigna para ayudarte con todo
-						tu trámite y dudas, sin ningun costo.
-					</li>
-
-					<li>
-						<i class="ri-verified-badge-fill"></i>
-						Se te ofrecen las mejores alternativas del mercado en base
-						a tu perfil.
-					</li>
-
-					<li>
-						<i class="ri-verified-badge-fill"></i>
-						Atención en el horario de tu preferencia.
-					</li>
-
-					<li>
-						<i class="ri-verified-badge-fill"></i>
-						Somos un equipo actualizado con las nuevas tecnologías y
-						herramientas que permiten que tu trámite sea mucho más fácil
-						y rápido, a diferencia de realizar tu trámite en una sucursal
-						bancaria.
-					</li>
-				</ul>
+					<ul class="text-sm mt-3 space-y-3 text-sky-700 font-semibold">
+						<li>
+							<i class="ri-verified-badge-fill text-green-500 text-base"></i>
+							El 99% de nuestros clientes quedaron satisfechos con su servicio.
+						</li>
+	
+						<li>
+							<i class="ri-verified-badge-fill text-green-500 text-base"></i>
+							Llevamos más de 100 millones de pesos MX en financiamiento.
+						</li>
+	
+						<li>
+							<i class="ri-verified-badge-fill text-green-500 text-base"></i>
+							Un asesor profesional se te asigna para ayudarte con todo
+							tu trámite y dudas, sin ningun costo.
+						</li>
+	
+						<li>
+							<i class="ri-verified-badge-fill text-green-500 text-base"></i>
+							Se te ofrecen las mejores alternativas del mercado en base
+							a tu perfil.
+						</li>
+	
+						<li>
+							<i class="ri-verified-badge-fill text-green-500 text-base"></i>
+							Atención en el horario de tu preferencia.
+						</li>
+	
+						<li>
+							<i class="ri-verified-badge-fill text-green-500 text-base"></i>
+							Somos un equipo actualizado con las nuevas tecnologías y
+							herramientas que permiten que tu trámite sea mucho más fácil
+							y rápido, a diferencia de realizar tu trámite en una sucursal
+							bancaria.
+						</li>
+					</ul>
+				</section>
 			</div>
 		</section>
 
 		<section>
-			<div class="contenedor">
+			<div class="contenedor pb-16">
 				<div class="flex justify-center">
 					<span
 						class="text-center border border-sky-700 rounded px-4 py-1 text-sky-700 font-semibold mb-3"
 						>Pasos</span
 					>
 				</div>
-				<h2 class="subtitle text-center">
-					Tu crédito hipotecario en 3 pasos
+				<h2 class="subtitle text-center font-medium text-[#013F91]">
+					Tu crédito hipotecario en 5 pasos sencillos
 				</h2>
 
-				<section class="credit-steps-section space-y-3">
-					<div class="w-40 mx-auto">
+				<section class="steps">
+					<!-- <div class="steps__image-container">
 						<Picture
 							src={imgCreditStep}
 							formats={["avif", "webp"]}
-							alt="Credit steps Image"
-						/>
-					</div>
+							alt="Credit steps Image"/>
+					</div> -->
 
-					<CreditStep number="01" title="Ingreso y autorización">
-						Despues de un breve entrevista para conocer tu perfil y
-						simular tu crédito, ingresamos tu expediente a banco y
-						se obtiene la autorización.
+					<CreditStep number="01" title="Simula tu crédito" class="step relative">
+						Primero, usa nuestra calculadora hipotecaria para estimar el monto al que podrías acceder, las mensualidades y los plazos, considerando las condiciones del mercado mexicano.
 					</CreditStep>
 
-					<CreditStep number="02" title="Avalúo y notaría">
-						Se realiza un avalúo al inmueble que elegiste y se
-						asigna a una notaría.
+					<CreditStep number="02" title="Precalifícate sin complicaciones">
+						Llena nuestro breve formulario en línea para conocer tus opciones de crédito y qué productos se ajustan mejor a tu perfil en México.
 					</CreditStep>
 
-					<CreditStep number="03" title="Firma de escrituras">
-						Finalmente firmas las escrituras de tu nuevo hogar 🎉
+					<CreditStep number="03" title="Arma tu expediente">
+						Te daremos una lista clara de los documentos que necesitarás (comprobantes de ingresos, identificación oficial, etc.) para tu solicitud en el sistema bancario mexicano.
 					</CreditStep>
+
+					<CreditStep number="04" title="Valuación y aprobación">
+						Nosotros coordinaremos la valuación de la propiedad que te interesa y gestionaremos la aprobación final de tu crédito hipotecario con las instituciones financieras.
+					</CreditStep>
+
+					<CreditStep number="05" title="Firma y estrena">
+						Finalmente, coordinaremos la firma de las escrituras ante un notario público. ¡Y listo! Estarás oficialmente estrenando tu hogar en México.
+					</CreditStep>
+
 				</section>
 			</div>
 		</section>
 
-		<section class="main-section">
-			<div class="contenedor">
-				<h2 class="subtitle text-center">
+		<section class="bg-[#F9FAFB]">
+			<div class="contenedor py-16">
+				<h2 class="subtitle text-center font-medium text-[#013F91]">
 					Todas las opciones de crédito
 				</h2>
-				<span class="text-sm text-center text-zinc-200 mb-5 block">
+				<span class="text-sm lg:text-base text-center text-stone-700 mb-5 block">
 					Ya sea que quieras comprar tu nueva casa, invertir o crear
 					un nuevo proyecto
 				</span>
 
-				<section class="space-y-6">
+				<section class="credits__container">
 					<CreditCard
 						imagePath={houseCredit}
 						title="Créditos para comprar vivienda"
 					>
-						Financia la compra de tu vivienda con nuestros créditos
-						de adquisición. Tasas competitivas, plazos flexibles y
-						asesoría personalizada para que encuentres la mejor
-						opción.
+						<ul class="text-sm space-y-2">
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								El camino directo para adquirir el hogar que sueñas.
+							</li>
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Accede a excelentes tasas para pagos más cómodos.
+							</li>
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Compra propiedades nuevas o con uso.
+							</li>
+						</ul>
 					</CreditCard>
 
 					<CreditCard imagePath={billete} title="Crédito de liquidez">
-						Accede al efectivo que necesitas con nuestro crédito de
-						liquidez. Ideal para cubrir gastos urgentes o proyectos
-						personales.
+						<ul class="text-sm space-y-2">
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Usa el efectivo para cualquier objetivo personal o de negocio.
+							</li>
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Benefíciate de intereses más bajos por tener una garantía.
+							</li>
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Diseñado para que pagues sin descapitalizarte.
+							</li>
+						</ul>
 					</CreditCard>
 
-					<div class="border border-zinc-500 p-8 rounded-md">
+					<CreditCard imagePath={percentage} title="Mejora de hipoteca">
+						<ul class="text-sm space-y-2">
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Reduce tus pagos al conseguir una mejor tasa.
+							</li>
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Termina de pagar tu hipoteca más rápido.
+							</li>
+							<li>
+								<i class="ri-checkbox-circle-line text-green-600"></i>
+								Accede a mejores términos que tu crédito actual.
+							</li>
+						</ul>
+					</CreditCard>
+
+					<!-- <div class="border border-zinc-500 p-8 rounded-md">
 						<div class="flex justify-center">
 							<GrcLogo width={70} height={70} />
 						</div>
@@ -185,8 +230,12 @@ const title =
 						>
 							Ir al sitio web
 						</a>
-					</div>
+					</div> -->
 				</section>
+
+				<div class="flex justify-center mt-10">
+					<a href="" class="bg-[#013F91] lg:hover:bg-[#14519d] transition-[background-color] duration-300 text-white py-2 px-6 rounded-md text-sm">Ver todos los créditos</a>
+				</div>
 			</div>
 		</section>
 
@@ -224,6 +273,156 @@ const title =
 			</div>
 		</section>
 	</main>
-
-	
 </MainLayout>
+
+<style>
+	.main-section {
+		background: #0054c4;
+		background: linear-gradient(0deg, #0054c4, #012f6c);
+		color: white;
+		padding-block: 8rem 5rem;
+	}
+
+	.steps {
+		background: #0054c4;
+		background: linear-gradient(0deg, #0054c4, #012f6c);
+		padding: 40px;
+		border-radius: 18px;
+		display: grid;
+		gap: 2rem;
+		max-width: 700px;
+		margin-inline: auto;
+
+		/* @media(width >= 1024px) {
+			
+		} */
+	}
+
+	.steps__image-container {
+		margin-inline: auto;
+		max-width: 160px;
+
+		@media(width >= 1024px) {
+			max-width: 500px;
+			order: 1;
+		}
+	}
+
+	.step::after {
+		content: '';
+		width: 3px;
+		height: 10px;
+		background-color: red;
+	}
+
+	.hero {
+		@media (width >= 1024px) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			align-items: center;
+		}
+	}
+
+	.hero__image-container {
+
+		@media(width < 1024px) {
+			max-width: 300px;
+			margin-inline: auto;
+		}
+
+		@media(width < 1280px) {
+			max-width: 20rem;
+			margin-inline: auto;
+		}
+
+		@media(width >= 1280px) {
+			max-width: 30rem;
+		}
+	}
+
+	.hero__title {
+		font-size: 30px;
+		font-weight: 500;
+		line-height: 1.5;
+
+		@media(650px <= width < 1024px) {
+			font-size: 50px;
+		}
+
+		@media(1024px <= width < 1280px) {
+			font-size: 50px;
+		}
+
+		@media (width >= 1280px) {
+			font-size: 62px;
+		}
+
+		
+	}
+
+	.hero__span {
+		color: #efefef;
+		line-height: 2;
+		margin-block: 1rem;
+		display: block;
+	}
+
+	.hero__link {
+		margin-top: 12px;
+		border-radius: 6px;
+		border: 1px solid #457fcb;
+		background: #2d5fc2;
+		display: flex;
+		justify-content: center;
+		padding-block: 10px;
+
+		@media(650px <= width < 1024px) {
+			width: fit-content;
+			padding-inline: 30px;
+		}
+	}
+
+	.hero__section-two {
+		@media (width >= 1280px) {
+			justify-self: center;
+		}
+	}
+
+	.ab-us {
+		padding-block: 4rem;
+		@media(width >= 1024px) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			place-items: center;
+		}
+	}
+
+	.ab-us__image-container {
+		@media(width < 1024px) {
+			width: 240px;
+			margin-inline: auto;
+		}
+
+		@media(width >= 1024px) {
+			max-width: 450px;
+		}
+	}
+
+	.ab-us__title {
+		color: var(--color-sky-700);
+		font-weight: 600;
+		text-align: center;
+		margin-block-start: 20px;
+
+		@media(width >= 1280px) {
+			font-size: 40px;
+			text-align: left;
+		}
+	}
+
+	.credits__container {
+		display: grid;
+		gap: 2rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	}
+</style>
