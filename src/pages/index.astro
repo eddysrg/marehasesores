@@ -17,7 +17,7 @@ import Faq from "../components/Faq.astro";
 
 //
 
-import aboutPicture from "../assets/images/about-picture.png";
+import aboutPicture from "../assets/images/about-picture.jpg";
 
 const title =
 	"Mareh Asesores - Encuentra la mejor hipoteca para tu hogar con expertos";
@@ -40,10 +40,10 @@ const title =
 						nuevo hogar.
 					</span>
 
-					<section class="flex flex-col mt-5 gap-4">
+					<section class="flex flex-col mt-8 gap-8">
 						<button>
 							<a
-								class="bg-white px-4 py-2 rounded-md font-medium"
+								class="bg-white px-4 py-4 rounded-md font-medium"
 							>
 								Simula tu crédito gratis
 								<i class="ri-arrow-right-up-line"></i>
@@ -60,7 +60,7 @@ const title =
 			</div>
 		</section>
 
-		<section>
+		<section class="mt-10">
 			<div class="w-[90%] mx-auto">
 				<section>
 					<div class="flex justify-center mb-2">
@@ -74,8 +74,8 @@ const title =
 						condiciones
 					</h2>
 	
-					<div class="ab-us__image-container">
-						<Picture src={aboutPicture} alt="about us image" />
+					<div class="w-52 mx-auto">
+						<Picture src={aboutPicture} alt="about us image" class="rounded-md" />
 					</div>
 	
 					<section class="space-y-3 mt-10 text-zinc-700">
@@ -126,81 +126,53 @@ const title =
 			</div>
 		</section>
 
-		<section>
-			<div class="contenedor pb-16">
-				<div class="flex justify-center">
-					<span
-						class="text-center border border-sky-700 rounded px-4 py-1 text-sky-700 font-semibold mb-3"
-						>Pasos</span
-					>
-				</div>
-				<h2 class="subtitle text-center font-medium text-[#013F91]">
-					Tu crédito hipotecario en 5 pasos sencillos
+		<section class="py-12">
+			<div class="w-[90%] mx-auto">
+				<h2 class="text-center text-3xl text-sky-900 font-medium mb-5">
+					Todas las opciones de crédito para cada necesidad
 				</h2>
-
-				<section class="steps">
-					<!-- <div class="steps__image-container">
-						<Picture
-							src={imgCreditStep}
-							formats={["avif", "webp"]}
-							alt="Credit steps Image"/>
-					</div> -->
-
-					<CreditStep
-						number="01"
-						title="Simula tu crédito"
-						class="step relative"
-					>
-						Primero, usa nuestra calculadora hipotecaria para
-						estimar el monto al que podrías acceder, las
-						mensualidades y los plazos, considerando las condiciones
-						del mercado mexicano.
-					</CreditStep>
-
-					<CreditStep
-						number="02"
-						title="Precalifícate sin complicaciones"
-					>
-						Llena nuestro breve formulario en línea para conocer tus
-						opciones de crédito y qué productos se ajustan mejor a
-						tu perfil en México.
-					</CreditStep>
-
-					<CreditStep number="03" title="Arma tu expediente">
-						Te daremos una lista clara de los documentos que
-						necesitarás (comprobantes de ingresos, identificación
-						oficial, etc.) para tu solicitud en el sistema bancario
-						mexicano.
-					</CreditStep>
-
-					<CreditStep number="04" title="Valuación y aprobación">
-						Nosotros coordinaremos la valuación de la propiedad que
-						te interesa y gestionaremos la aprobación final de tu
-						crédito hipotecario con las instituciones financieras.
-					</CreditStep>
-
-					<CreditStep number="05" title="Firma y estrena">
-						Finalmente, coordinaremos la firma de las escrituras
-						ante un notario público. ¡Y listo! Estarás oficialmente
-						estrenando tu hogar en México.
-					</CreditStep>
-				</section>
-			</div>
-		</section>
-
-		<section class="bg-[#F9FAFB]">
-			<div class="contenedor py-16">
-				<h2 class="subtitle text-center font-medium text-[#013F91]">
-					Todas las opciones de crédito
-				</h2>
-				<span
-					class="text-sm lg:text-base text-center text-stone-700 mb-5 block"
-				>
+				<p class="text-zinc-700 text-center">
 					Ya sea que quieras comprar tu nueva casa, invertir o crear
 					un nuevo proyecto
-				</span>
+				</p>
 
-				<section class="credits__container">
+				<section class="space-y-5 mt-5">
+					<div class="credit-card relative">
+						<h3 class="text-neutral-100 text-2xl font-medium mb-3">Crédito de adquisición</h3>
+						<p class="text-zinc-200">El camino directo para adquirir el hogar que sueñas.</p>
+
+						<Picture src={houseCredit} alt="house credit" class="w-44 mx-auto" />
+
+						<div class="absolute w-12 h-12 bg-white rounded-md bottom-5 right-5 flex justify-center items-center">
+							<i class="ri-add-large-line text-xl"></i>
+						</div>
+					</div>	
+
+					<div class="credit-card relative">
+						<h3 class="text-neutral-100 text-2xl font-medium mb-3">Crédito de liquidez</h3>
+						<p class="text-zinc-200">Usa tu propiedad para obtener la liquidez que necesitas para tus proyectos personales o de inversión.</p>
+
+						<Picture src={billetes} alt="house credit" class="w-44 mx-auto" />
+
+						<div class="absolute w-12 h-12 bg-white rounded-md bottom-5 right-5 flex justify-center items-center">
+							<i class="ri-add-large-line text-xl"></i>
+						</div>
+					</div>
+					
+					<div class="credit-card relative">
+						<h3 class="text-neutral-100 text-2xl font-medium mb-3">Mejora de hipoteca</h3>
+						<p class="text-zinc-200">Refinancia tu crédito actual y reduce tus pagos mensuales o mejora tu tasa de interés.</p>
+
+						<Picture src={interest} alt="house credit" class="w-44 mx-auto" />
+
+						<div class="absolute w-12 h-12 bg-white rounded-md bottom-5 right-5 flex justify-center items-center">
+							<i class="ri-add-large-line text-xl"></i>
+						</div>
+					</div>
+				</section>
+
+
+				<!-- <section class="credits__container">
 					<CreditCard
 						imagePath={houseCredit}
 						title="Créditos para comprar vivienda"
@@ -277,28 +249,7 @@ const title =
 							</li>
 						</ul>
 					</CreditCard>
-
-					<!-- <div class="border border-zinc-500 p-8 rounded-md">
-						<div class="flex justify-center">
-							<GrcLogo width={70} height={70} />
-						</div>
-						<h3 class="font-semibold mt-5 mb-2 text-center">
-							Encuentra tu hogar ideal con GRC
-						</h3>
-						<p class="text-sm text-zinc-200 text-center">
-							¿Buscas casa? Nuestros aliados de GRC Inmobiliaria
-							te ayudaran a encontrar las mejores opciones del
-							mercado, para hacer realidad tu sueño de tener un
-							hogar.
-						</p>
-						<a
-							href=""
-							class="border border-zinc-500 mt-3 flex justify-center py-1 rounded-md text-sm"
-						>
-							Ir al sitio web
-						</a>
-					</div> -->
-				</section>
+				</section> -->
 
 				<div class="flex justify-center mt-10">
 					<a
@@ -309,6 +260,70 @@ const title =
 				</div>
 			</div>
 		</section>
+
+		<section>
+			<div class="contenedor pb-16">
+				<div class="flex justify-center">
+					<span
+						class="text-center border border-sky-700 rounded px-4 py-1 text-sky-700 font-semibold mb-3"
+						>Pasos</span
+					>
+				</div>
+				<h2 class="subtitle text-center font-medium text-[#013F91]">
+					Tu crédito hipotecario en 5 pasos sencillos
+				</h2>
+
+				<section class="steps">
+					<!-- <div class="steps__image-container">
+						<Picture
+							src={imgCreditStep}
+							formats={["avif", "webp"]}
+							alt="Credit steps Image"/>
+					</div> -->
+
+					<CreditStep
+						number="01"
+						title="Simula tu crédito"
+						class="step relative"
+					>
+						Primero, usa nuestra calculadora hipotecaria para
+						estimar el monto al que podrías acceder, las
+						mensualidades y los plazos, considerando las condiciones
+						del mercado mexicano.
+					</CreditStep>
+
+					<CreditStep
+						number="02"
+						title="Precalifícate sin complicaciones"
+					>
+						Llena nuestro breve formulario en línea para conocer tus
+						opciones de crédito y qué productos se ajustan mejor a
+						tu perfil en México.
+					</CreditStep>
+
+					<CreditStep number="03" title="Arma tu expediente">
+						Te daremos una lista clara de los documentos que
+						necesitarás (comprobantes de ingresos, identificación
+						oficial, etc.) para tu solicitud en el sistema bancario
+						mexicano.
+					</CreditStep>
+
+					<CreditStep number="04" title="Valuación y aprobación">
+						Nosotros coordinaremos la valuación de la propiedad que
+						te interesa y gestionaremos la aprobación final de tu
+						crédito hipotecario con las instituciones financieras.
+					</CreditStep>
+
+					<CreditStep number="05" title="Firma y estrena">
+						Finalmente, coordinaremos la firma de las escrituras
+						ante un notario público. ¡Y listo! Estarás oficialmente
+						estrenando tu hogar en México.
+					</CreditStep>
+				</section>
+			</div>
+		</section>
+
+		
 
 		<section
 			class="bg-[url('../assets/images/living-room-blue.webp')] bg-no-repeat bg-cover bg-center"
@@ -378,5 +393,23 @@ const title =
 			#3584a7 51%,
 			#30d2be 100%
 		);
+	}
+
+	.credit-card:nth-child(1) {
+		background: linear-gradient(90deg, hsla(236, 100%, 8%, 1) 0%, hsla(211, 100%, 28%, 1) 100%);
+		padding: 2rem;
+		border-radius: 1rem;
+	}
+
+	.credit-card:nth-child(2) {
+		background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+		padding: 2rem;
+		border-radius: 1rem;
+	}
+
+	.credit-card:nth-child(3) {
+		background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+		padding: 2rem;
+		border-radius: 1rem;
 	}
 </style>
