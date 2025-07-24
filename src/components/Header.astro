@@ -1,115 +1,30 @@
 ---
 import Logo from "../assets/logomareh_blanco.svg";
+import LogoBlack from "../assets/logomareh_negro.svg";
 ---
 
-<style>
-    .submenu {
-        @media(width < 64rem) {
-            margin-left: calc(var(--spacing) * 5);
-            max-height: 0;
-            overflow: hidden;
-            transition-property: max-height;
-            transition-timing-function: var(--tw-ease, var(--default-transition-timing-function) /* cubic-bezier(0.4, 0, 0.2, 1) */);
-            transition-duration: 700ms;
-        }
+<header class="fixed top-0 left-0 w-full max-h-14 overflow-hidden border-b border-zinc-300 bg-[#F8F9FA]">
+    <nav class="w-11/12 mx-auto h-full">
+        <section class="flex justify-between items-center h-full">
+            <LogoBlack width={70} height={50} />
 
-        @media (width >= 1024px) {
-            width: 250%;
-            background-color: #013f91;
-            position: absolute;
-            top: 6rem;
-            left: 0;
-            transform: scale(0);
-            padding-inline: 1rem;
-            padding-block: 12px;
-            border-radius: 6px;
-        }
-    }
-
-    .open-menu {
-        @media(width < 64rem) {
-            max-height: 500px;
-        }
-
-        @media(width >= 1024px) {
-            transform: scale(1);
-        }
-    }
-
-    .header {
-        transition: background-color 0.5s ease;
-    }
-
-    .scrolled {
-        background-color: #013f91; 
-    }
-</style>
-
-<header class="fixed top-0 left-0 w-full header">
-    <nav class="w-11/12 lg:w-10/12 mx-auto h-full lg:flex lg:justify-between relative">
-        <section class="flex justify-between py-4">
-            <Logo width={90} height={50} />
-
-            <button type="button" id="btn-menu" class="lg:hidden">
-                <i class="btn-menu__icon ri-menu-3-line text-2xl text-white"></i>
+            <button type="button" id="btn-menu" class="menu-btn" aria-label="Menú">
+                <i class="ri-menu-3-line text-2xl"></i>
             </button>
         </section>
 
-        <ul class="text-sm text-white max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible transition-[max-height] lg:transition-none ease duration-700 lg:flex" id="menu-nav">
-            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Inicio</a></li>
-            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Nosotros</a></li>
-            <li class="relative">
-                <button type="button" id="submenu-btn__one" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md w-full lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">
-                    Créditos <i class="ri-arrow-down-s-fill"></i>
-                </button>
-
-                <ul class="submenu" id="submenu-one">
-                    <li><a href="" class="flex items-center px-4 py-2 mb-3 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Crédito de adquisición</a></li>
-                    <li><a href="" class="flex items-center px-4 py-2 mb-3 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Crédito de liquidez</a></li>
-                    <li><a href="" class="flex items-center px-4 py-2 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Mejora de hipoteca</a></li>
-                </ul>
-            </li>
-            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Contacto</a></li>
-            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Noticias</a></li>
-            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300">Blog</a></li>
-            <li><a href="" class="flex items-center px-4 py-2 lg:py-0 mb-3 lg:mb-0 rounded-md lg:h-full lg:hover:text-neutral-300 lg:transition-[color] lg:duration-300 xl:hidden">Simula tu crédito</a></li>
+        <ul class="space-y-4 text-sm text-center font-medium max-h-0">
+            <li><a href="">Inicio</a></li>
+            <li><a href="">Nosotros</a></li>
+            <li><a href="">Créditos</a></li>
+            <li><a href="">Contacto</a></li>
+            <li><a href="">Noticias</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">Simula tu crédito</a></li>
         </ul>
-
-        <a href="" class="hidden xl:inline-flex xl:bg-white xl:self-center xl:py-3 xl:px-5 xl:rounded-md xl:font-medium xl:text-sm xl:hover:bg-neutral-200 xl:transition-[background-color] xl:duration-300">Simula tu crédito</a>
     </nav>
 </header>
 
 <script>
-    const btnMenu = document.getElementById('btn-menu');
-    const btnMenuIcon = document.querySelector('.btn-menu__icon');
-    const submenuBtnOne = document.getElementById('submenu-btn__one');
-    const menuNav = document.getElementById('menu-nav');
-    const submenuOne = document.getElementById('submenu-one');
-    const header = document.querySelector('.header');
-
-    btnMenu?.addEventListener('click', () => {
-        menuNav?.classList.toggle('open-menu');
-        btnMenuIcon?.classList.toggle('ri-menu-3-line');
-        btnMenuIcon?.classList.toggle('ri-close-line');
-    });
-
-    submenuBtnOne?.addEventListener('click', (event) => {
-        event.stopPropagation();
-        submenuOne?.classList.toggle('open-menu');
-    }); 
-
-    document.addEventListener('click', (event) => {
-        if(!submenuOne?.contains(event.target as Node) && submenuOne?.classList.contains('open-menu')) {
-            submenuOne.classList.remove('open-menu');
-        }
-    });
-
-    window.addEventListener('scroll', function() {
-        if(window.scrollY > 50) {
-            header?.classList.add('scrolled');
-        } else {
-            header?.classList.remove('scrolled');
-        }
-    });
 
 </script>
