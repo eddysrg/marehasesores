@@ -3,28 +3,384 @@ import Logo from "../assets/logomareh_blanco.svg";
 import LogoBlack from "../assets/logomareh_negro.svg";
 ---
 
-<header class="fixed z-30 top-0 left-0 w-full max-h-14 overflow-hidden border-b border-zinc-300 bg-[#F8F9FA]">
-    <nav class="w-11/12 mx-auto h-full">
-        <section class="flex justify-between items-center h-full">
-            <LogoBlack width={70} height={50} />
+<header class="header">
+    <div class="header__container">
+        <LogoBlack width={70} height={50} />
 
-            <button type="button" id="btn-menu" class="menu-btn" aria-label="Menú">
-                <i class="ri-menu-3-line text-2xl"></i>
-            </button>
-        </section>
+        <!-- <button class="header__menu-btn" id="menuBtn" aria-label="Abrir menú">
+            <span class="header__menu-btn-line"></span>
+            <span class="header__menu-btn-line"></span>
+            <span class="header__menu-btn-line"></span>
+        </button> -->
 
-        <ul class="space-y-4 text-sm text-center font-medium max-h-0">
-            <li><a href="">Inicio</a></li>
-            <li><a href="">Nosotros</a></li>
-            <li><a href="">Créditos</a></li>
-            <li><a href="">Contacto</a></li>
-            <li><a href="">Noticias</a></li>
-            <li><a href="">Blog</a></li>
-            <li><a href="">Simula tu crédito</a></li>
+        <button class="header__menu-btn" id="menuBtn" aria-label="Abrir menú">
+            <i class="ri-menu-3-line text-2xl" id="menuIcon"></i>
+        </button>
+    </div>
+
+    <nav class="header__nav" id="headerNav">
+        <ul class="header__nav-list">
+            <li class="header__nav-item">
+                <a href="#" class="header__nav-link">Inicio</a>
+            </li>
+            <li class="header__nav-item header__nav-item--has-submenu">
+                <a
+                    href="#"
+                    class="header__nav-link header__nav-link--has-submenu"
+                >
+                    Servicios
+                    <span class="header__nav-arrow">▼</span>
+                </a>
+                <ul class="header__submenu">
+                    <li class="header__submenu-item">
+                        <a href="#" class="header__submenu-link"
+                            >Crédito Hipotecario</a
+                        >
+                    </li>
+                    <li class="header__submenu-item">
+                        <a href="#" class="header__submenu-link"
+                            >Refinanciamiento</a
+                        >
+                    </li>
+                    <li class="header__submenu-item">
+                        <a href="#" class="header__submenu-link"
+                            >Asesoría Financiera</a
+                        >
+                    </li>
+                </ul>
+            </li>
+            <li class="header__nav-item header__nav-item--has-submenu">
+                <a
+                    href="#"
+                    class="header__nav-link header__nav-link--has-submenu"
+                >
+                    Productos
+                    <span class="header__nav-arrow">▼</span>
+                </a>
+                <ul class="header__submenu">
+                    <li class="header__submenu-item">
+                        <a href="#" class="header__submenu-link"
+                            >Vivienda Nueva</a
+                        >
+                    </li>
+                    <li class="header__submenu-item">
+                        <a href="#" class="header__submenu-link"
+                            >Vivienda Usada</a
+                        >
+                    </li>
+                    <li class="header__submenu-item">
+                        <a href="#" class="header__submenu-link">Construcción</a
+                        >
+                    </li>
+                </ul>
+            </li>
+            <li class="header__nav-item">
+                <a href="#" class="header__nav-link">Nosotros</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="#" class="header__nav-link">Contacto</a>
+            </li>
         </ul>
     </nav>
 </header>
 
-<script>
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #F8F9FA;
+        border-bottom: 1px solid #8e8e8e;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
 
+    .header__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header__menu-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 25px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+    }
+
+    .header__nav {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+
+    .header__nav--open {
+        max-height: 500px;
+    }
+
+    .header__nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0 2rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header__nav-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header__nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .header__nav-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .header__nav-link:hover {
+        color: #ffd700;
+    }
+
+    .header__nav-arrow {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+    }
+
+    .header__nav-link--active .header__nav-arrow {
+        transform: rotate(180deg);
+    }
+
+    .header__submenu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .header__submenu--open {
+        max-height: 200px;
+    }
+
+    .header__submenu-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .header__submenu-item:last-child {
+        border-bottom: none;
+    }
+
+    .header__submenu-link {
+        display: block;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .header__submenu-link:hover {
+        color: #ffd700;
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+        .header__menu-btn {
+            display: none;
+        }
+
+        .header__nav {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .header__nav-list {
+            display: flex;
+            padding: 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header__nav-item {
+            border-bottom: none;
+            position: relative;
+        }
+
+        .header__nav-link {
+            padding: 1rem 1.5rem;
+            border-bottom: 3px solid transparent;
+        }
+
+        .header__nav-link:hover {
+            border-bottom-color: #ffd700;
+        }
+
+        .header__submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .header__nav-item:hover .header__submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .header__submenu-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header__submenu-link {
+            padding: 0.75rem 1rem;
+        }
+
+        .header__nav-arrow {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    class HeaderMenu {
+        private menuBtn: HTMLElement | null;
+        private headerNav: HTMLElement | null;
+        private menuIcon: HTMLElement | null;
+        private submenuLinks: NodeListOf<HTMLElement>;
+
+        constructor() {
+            this.menuBtn = document.getElementById("menuBtn");
+            this.menuIcon = document.getElementById("menuIcon");
+            this.headerNav = document.getElementById("headerNav");
+            this.submenuLinks = document.querySelectorAll(
+                ".header__nav-link--has-submenu",
+            );
+
+            this.init();
+        }
+
+        private init(): void {
+            if (this.menuBtn) {
+                this.menuBtn.addEventListener("click", () => this.toggleMenu());
+            }
+
+            this.submenuLinks.forEach((link) => {
+                link.addEventListener("click", (e) => this.toggleSubmenu(e));
+            });
+
+            // Cerrar menú al hacer click fuera
+            document.addEventListener("click", (e) =>
+                this.handleOutsideClick(e),
+            );
+        }
+
+        private toggleMenu(): void {
+            if (!this.menuBtn || !this.headerNav) return;
+
+            const isOpen =
+                this.headerNav.classList.contains("header__nav--open");
+
+            if (isOpen) {
+                this.closeMenu();
+            } else {
+                this.openMenu();
+            }
+        }
+
+        private openMenu(): void {
+            if (!this.menuBtn || !this.headerNav) return;
+
+            this.headerNav.classList.add("header__nav--open");
+            this.menuIcon?.classList.add("ri-close-large-line");
+            this.menuIcon?.classList.remove("ri-menu-3-line");
+        }
+
+        private closeMenu(): void {
+            if (!this.menuBtn || !this.headerNav) return;
+
+            this.headerNav.classList.remove("header__nav--open");
+            this.menuIcon?.classList.remove("ri-close-large-line");
+            this.menuIcon?.classList.add("ri-menu-3-line");
+
+            // Cerrar todos los submenús
+            this.closeAllSubmenus();
+        }
+
+        private toggleSubmenu(e: Event): void {
+            e.preventDefault();
+
+            const link = e.currentTarget as HTMLElement;
+            const submenu = link.nextElementSibling as HTMLElement;
+
+            if (!submenu || !submenu.classList.contains("header__submenu"))
+                return;
+
+            const isOpen = submenu.classList.contains("header__submenu--open");
+
+            // Cerrar todos los submenús primero
+            this.closeAllSubmenus();
+
+            if (!isOpen) {
+                link.classList.add("header__nav-link--active");
+                submenu.classList.add("header__submenu--open");
+            }
+        }
+
+        private closeAllSubmenus(): void {
+            const openSubmenus = document.querySelectorAll(
+                ".header__submenu--open",
+            );
+            const activeLinks = document.querySelectorAll(
+                ".header__nav-link--active",
+            );
+
+            openSubmenus.forEach((submenu) => {
+                submenu.classList.remove("header__submenu--open");
+            });
+
+            activeLinks.forEach((link) => {
+                link.classList.remove("header__nav-link--active");
+            });
+        }
+
+        private handleOutsideClick(e: Event): void {
+            const target = e.target as HTMLElement;
+
+            // Si el click no es dentro del header, cerrar el menú
+            if (!target.closest(".header")) {
+                this.closeMenu();
+            }
+        }
+    }
+
+    // Inicializar cuando el DOM esté listo
+    document.addEventListener("DOMContentLoaded", () => {
+        new HeaderMenu();
+    });
 </script>
