@@ -4,84 +4,87 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 ---
 
 <header class="header">
-    <div class="header__container">
-        <LogoBlack width={70} height={50} />
+    <section class="header__container">
+        <div class="header__logo-container">
+            <LogoBlack width={70} height={50} />
+    
+            <button class="header__menu-btn" id="menuBtn" aria-label="Abrir menú">
+                <i class="ri-menu-3-line text-2xl" id="menuIcon"></i>
+            </button>
+        </div>
+    
+        <nav class="header__nav" id="headerNav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="#" class="header__nav-link">Inicio</a>
+                </li>
+                <li class="header__nav-item header__nav-item--has-submenu">
+                    <a href="#" class="header__nav-link header__nav-link--has-submenu">
+                        Servicios
+                        <i class="ri-arrow-down-s-line text-xl"></i>
+                    </a>
+                    <ul class="header__submenu">
+                        <li class="header__submenu-item">
+                            <a href="#" class="header__submenu-link"
+                                >Crédito Hipotecario</a
+                            >
+                        </li>
+                        <li class="header__submenu-item">
+                            <a href="#" class="header__submenu-link"
+                                >Refinanciamiento</a
+                            >
+                        </li>
+                        <li class="header__submenu-item">
+                            <a href="#" class="header__submenu-link"
+                                >Asesoría Financiera</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="header__nav-item header__nav-item--has-submenu">
+                    <a
+                        href="#"
+                        class="header__nav-link header__nav-link--has-submenu"
+                    >
+                        Productos
+                        <i class="ri-arrow-down-s-line text-xl"></i>
+                    </a>
+                    <ul class="header__submenu">
+                        <li class="header__submenu-item">
+                            <a href="#" class="header__submenu-link"
+                                >Vivienda Nueva</a
+                            >
+                        </li>
+                        <li class="header__submenu-item">
+                            <a href="#" class="header__submenu-link"
+                                >Vivienda Usada</a
+                            >
+                        </li>
+                        <li class="header__submenu-item">
+                            <a href="#" class="header__submenu-link">Construcción</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#" class="header__nav-link">Nosotros</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#" class="header__nav-link">Contacto</a>
+                </li>
 
-        <!-- <button class="header__menu-btn" id="menuBtn" aria-label="Abrir menú">
-            <span class="header__menu-btn-line"></span>
-            <span class="header__menu-btn-line"></span>
-            <span class="header__menu-btn-line"></span>
-        </button> -->
-
-        <button class="header__menu-btn" id="menuBtn" aria-label="Abrir menú">
-            <i class="ri-menu-3-line text-2xl" id="menuIcon"></i>
-        </button>
-    </div>
-
-    <nav class="header__nav" id="headerNav">
-        <ul class="header__nav-list">
-            <li class="header__nav-item">
-                <a href="#" class="header__nav-link">Inicio</a>
-            </li>
-            <li class="header__nav-item header__nav-item--has-submenu">
-                <a
-                    href="#"
-                    class="header__nav-link header__nav-link--has-submenu"
-                >
-                    Servicios
-                    <span class="header__nav-arrow">▼</span>
-                </a>
-                <ul class="header__submenu">
-                    <li class="header__submenu-item">
-                        <a href="#" class="header__submenu-link"
-                            >Crédito Hipotecario</a
-                        >
-                    </li>
-                    <li class="header__submenu-item">
-                        <a href="#" class="header__submenu-link"
-                            >Refinanciamiento</a
-                        >
-                    </li>
-                    <li class="header__submenu-item">
-                        <a href="#" class="header__submenu-link"
-                            >Asesoría Financiera</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li class="header__nav-item header__nav-item--has-submenu">
-                <a
-                    href="#"
-                    class="header__nav-link header__nav-link--has-submenu"
-                >
-                    Productos
-                    <span class="header__nav-arrow">▼</span>
-                </a>
-                <ul class="header__submenu">
-                    <li class="header__submenu-item">
-                        <a href="#" class="header__submenu-link"
-                            >Vivienda Nueva</a
-                        >
-                    </li>
-                    <li class="header__submenu-item">
-                        <a href="#" class="header__submenu-link"
-                            >Vivienda Usada</a
-                        >
-                    </li>
-                    <li class="header__submenu-item">
-                        <a href="#" class="header__submenu-link">Construcción</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li class="header__nav-item">
-                <a href="#" class="header__nav-link">Nosotros</a>
-            </li>
-            <li class="header__nav-item">
-                <a href="#" class="header__nav-link">Contacto</a>
-            </li>
-        </ul>
-    </nav>
+                <li class="header__nav-item">
+                    <a href="" class="header__nav-link header__nav-link--simula-credito">Simula tu crédito</a>
+                </li>
+            </ul>
+        </nav>
+    
+        <div class="header__simula-credito">
+            <a href="#" class="header__simula-credito-link">
+                ¡Simula tu crédito gratis!
+            </a>
+        </div>
+    </section>
 </header>
 
 <style>
@@ -91,13 +94,13 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         left: 0;
         right: 0;
         background: #F8F9FA;
-        border-bottom: 1px solid #8e8e8e;
+        border-bottom: 1px solid #d6d6d6;
         z-index: 1000;
         transition: all 0.3s ease;
         overflow: hidden;
     }
 
-    .header__container {
+    .header__logo-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -147,16 +150,14 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 
     .header__nav-link {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: 1rem 0;
-        text-decoration: none;
         font-weight: 500;
         transition: color 0.3s ease;
     }
 
     .header__nav-link:hover {
-        color: #ffd700;
+        color: var(--color-sky-900);
     }
 
     .header__nav-arrow {
@@ -202,8 +203,26 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         color: #ffd700;
     }
 
+    .header__simula-credito {
+        display: none;
+    }
+
     /* Responsive */
-    @media (min-width: 768px) {
+    @media (min-width: 1020px) {
+
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin-inline: auto;
+        }
+
+        .header__logo-container {
+            max-width: unset;
+            margin: 0;
+        }
+
         .header__menu-btn {
             display: none;
         }
@@ -215,22 +234,14 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 
         .header__nav-list {
             display: flex;
-            padding: 0 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0;
         }
 
         .header__nav-item {
             border-bottom: none;
             position: relative;
-        }
-
-        .header__nav-link {
-            padding: 1rem 1.5rem;
-            border-bottom: 3px solid transparent;
-        }
-
-        .header__nav-link:hover {
-            border-bottom-color: #ffd700;
         }
 
         .header__submenu {
@@ -264,6 +275,22 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         .header__nav-arrow {
             display: none;
         }
+    }
+
+    @media screen and (width >= 1280px) {
+
+        .header__simula-credito {
+            display: block;
+            background-color: black;
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .header__nav-link--simula-credito {
+            display: none;
+        }
+
     }
 </style>
 

@@ -5,7 +5,6 @@ import imageHero from "../assets/images/house_hero.png";
 import CreditStep from "../components/CreditStep.astro";
 import imgCreditStep from "../assets/images/little_house.png";
 import aboutUsImage from "../assets/images/aboutusimage.jpg";
-import CreditCard from "../components/CreditCard.astro";
 import houseCredit from "../assets/images/house_credit.png";
 import percentage from "../assets/images/percentage.png";
 import interest from "../assets/images/interest.png";
@@ -26,21 +25,19 @@ const title =
 <MainLayout title={title}>
 	<main>
 		<section class="mt-24">
-			<div class="hero my-5 w-[90%] mx-auto py-16 rounded-2xl p-5">
+			<div class="hero my-5 w-[90%] mx-auto py-16 rounded-2xl p-5 lg:flex lg:items-center lg:p-20">
 				<section>
-					<h1
-						class="text-white text-3xl font-medium text-center mb-4"
-					>
-						Tu nuevo hogar más cerca de lo que imaginas
+					<h1 class="text-white text-3xl font-medium text-center mb-4 lg:text-6xl lg:text-left">
+						Tu nuevo hogar más cerca de lo que <span class="text-cyan-200">imaginas</span>
 					</h1>
-					<span class="block text-neutral-100 text-center">
+					<span class="block text-neutral-100 text-center lg:text-left">
 						En Mareh Asesores te ayudamos a encontrar el crédito
 						hipotecario ideal para ti. Compara opciones, recibe
 						asesoría personalizada y da el primer paso hacia tu
 						nuevo hogar.
 					</span>
 
-					<section class="flex flex-col mt-8 gap-8">
+					<section class="flex flex-col mt-8 gap-8 lg:flex-row">
 						<button>
 							<a
 								class="bg-white px-4 py-4 rounded-md font-medium"
@@ -57,27 +54,35 @@ const title =
 						</button>
 					</section>
 				</section>
+
+				<section class="hidden lg:block">
+					<div class="">
+						<Picture src={imageHero} alt="about us image" class="rounded-md mask-b-from-20% lg:mask-b-to-80%" />
+					</div>
+				</section>
 			</div>
 		</section>
 
-		<section class="mt-10">
+		<section class="pt-10 lg:pt-20">
 			<div class="w-[90%] mx-auto">
-				<section>
+				<header>
 					<div class="flex justify-center mb-2">
 						<span class="text-xs text-cyan-700 p-2 border border-cyan-700 rounded-md">
 							+10 años de experiencia
 						</span>
 					</div>
 	
-					<h2 class="text-center text-3xl text-sky-900 font-medium mb-5">
+					<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5 lg:mb-10">
 						Más que un crédito, es tranquilidad y las mejores
 						condiciones
 					</h2>
-	
-					<div class="w-52 mx-auto">
+				</header>
+
+				<div class="lg:grid lg:grid-cols-2">
+					<section class="w-52 lg:w-80 xl:w-96 mx-auto">
 						<Picture src={aboutPicture} alt="about us image" class="rounded-md" />
-					</div>
-	
+					</section>
+
 					<section class="space-y-3 mt-10 text-zinc-700">
 						<p>
 							En <span class="font-semibold text-cyan-700">Mareh Asesores</span>  creemos que un crédito hipotecario no
@@ -92,43 +97,44 @@ const title =
 							felices y alianzas con los principales bancos en México,
 							estamos listos para acompañarte.
 						</p>
+
+						<div class="mt-3">
+
+							<h3 class="font-semibold text-cyan-700">Nuestra promesa:</h3>
+		
+							<ul class="text-sm mt-3 space-y-3 font-medium">
+								<li>
+									<i class="ri-check-line text-zinc-400"></i>
+									Asesoría gratuita y personalizada
+								</li>
+								<li>
+									<i class="ri-check-line text-zinc-400"></i>
+									Transparencia total
+								</li>
+								<li>
+									<i class="ri-check-line text-zinc-400"></i>
+									Acompañamiento humano
+								</li>
+								<li>
+									<i class="ri-check-line text-zinc-400"></i>
+									Resultados reales
+								</li>
+								<li>
+									<i class="ri-check-line text-zinc-400"></i>
+									Diferentes opciones de acuerdo a tu perfil
+								</li>
+							</ul>
+						</div>
 					</section>
-				</section>
+				</div>
 
-				<section class="mt-3">
 
-					<h3 class="font-semibold text-cyan-700">Nuestra promesa:</h3>
-
-					<ul class="text-sm mt-3 space-y-3 font-medium">
-						<li>
-							<i class="ri-check-line text-zinc-400"></i>
-							Asesoría gratuita y personalizada
-						</li>
-						<li>
-							<i class="ri-check-line text-zinc-400"></i>
-							Transparencia total
-						</li>
-						<li>
-							<i class="ri-check-line text-zinc-400"></i>
-							Acompañamiento humano
-						</li>
-						<li>
-							<i class="ri-check-line text-zinc-400"></i>
-							Resultados reales
-						</li>
-						<li>
-							<i class="ri-check-line text-zinc-400"></i>
-							Diferentes opciones de acuerdo a tu perfil
-						</li>
-					</ul>
-				</section>
-	
 			</div>
 		</section>
 
-		<section class="py-12">
+		<section class="pt-10 lg:pt-20">
 			<div class="w-[90%] mx-auto">
-				<h2 class="text-center text-3xl text-sky-900 font-medium mb-5">
+				<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5">
 					Todas las opciones de crédito para cada necesidad
 				</h2>
 				<p class="text-zinc-700 text-center">
@@ -136,7 +142,7 @@ const title =
 					un nuevo proyecto
 				</p>
 
-				<section class="space-y-5 mt-5">
+				<section class="space-y-5 md:space-y-0 mt-5 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5">
 					<div class="credit-card relative">
 						<h3 class="text-neutral-100 text-2xl font-medium mb-3">Crédito de adquisición</h3>
 						<p class="text-zinc-200">El camino directo para adquirir el hogar que sueñas.</p>
@@ -159,7 +165,7 @@ const title =
 						</div>
 					</div>
 					
-					<div class="credit-card relative">
+					<div class="credit-card relative md:col-span-2 lg:col-span-1">
 						<h3 class="text-neutral-100 text-2xl font-medium mb-3">Mejora de hipoteca</h3>
 						<p class="text-zinc-200">Refinancia tu crédito actual y reduce tus pagos mensuales o mejora tu tasa de interés.</p>
 
@@ -171,154 +177,42 @@ const title =
 					</div>
 				</section>
 
-
-				<!-- <section class="credits__container">
-					<CreditCard
-						imagePath={houseCredit}
-						title="Créditos para comprar vivienda"
-					>
-						<ul class="text-sm space-y-2">
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								El camino directo para adquirir el hogar que sueñas.
-							</li>
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Accede a excelentes tasas para pagos más cómodos.
-							</li>
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Compra propiedades nuevas o con uso.
-							</li>
-						</ul>
-					</CreditCard>
-
-					<CreditCard
-						imagePath={billetes}
-						title="Crédito de liquidez"
-					>
-						<ul class="text-sm space-y-2">
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Usa el efectivo para cualquier objetivo personal
-								o de negocio.
-							</li>
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Benefíciate de intereses más bajos por tener una
-								garantía.
-							</li>
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Diseñado para que pagues sin descapitalizarte.
-							</li>
-						</ul>
-					</CreditCard>
-
-					<CreditCard imagePath={interest} title="Mejora de hipoteca">
-						<ul class="text-sm space-y-2">
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Reduce tus pagos al conseguir una mejor tasa.
-							</li>
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Termina de pagar tu hipoteca más rápido.
-							</li>
-							<li>
-								<i
-									class="ri-checkbox-circle-line text-green-600"
-								></i>
-								Accede a mejores términos que tu crédito actual.
-							</li>
-						</ul>
-					</CreditCard>
-				</section> -->
-
 				<div class="flex justify-center mt-10">
-					<a
-						href=""
-						class="bg-[#013F91] lg:hover:bg-[#14519d] transition-[background-color] duration-300 text-white py-2 px-6 rounded-md text-sm"
-						>Ver todos los créditos</a
-					>
+					<a href="" class="bg-cyan-700 text-white px-4 py-4 rounded-md font-medium">
+						Ver todos los créditos
+						<i class="ri-corner-right-up-fill"></i>
+					</a>
 				</div>
 			</div>
 		</section>
 
-		<section>
-			<div class="contenedor pb-16">
-				<div class="flex justify-center">
-					<span
-						class="text-center border border-sky-700 rounded px-4 py-1 text-sky-700 font-semibold mb-3"
-						>Pasos</span
-					>
-				</div>
-				<h2 class="subtitle text-center font-medium text-[#013F91]">
-					Tu crédito hipotecario en 5 pasos sencillos
-				</h2>
+		<section class="pt-10 lg:pt-20">
+			<div class="w-[90%] mx-auto">
+				<header>
+					<div class="flex justify-center mb-2">
+						<span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md">
+							Pasos
+						</span>
+					</div>
+					<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5">
+						Tu crédito hipotecario en 5 pasos sencillos
+					</h2>
+				</header>
 
-				<section class="steps">
-					<!-- <div class="steps__image-container">
-						<Picture
-							src={imgCreditStep}
-							formats={["avif", "webp"]}
-							alt="Credit steps Image"/>
-					</div> -->
+				<section>
+					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5">
 
-					<CreditStep
-						number="01"
-						title="Simula tu crédito"
-						class="step relative"
-					>
-						Primero, usa nuestra calculadora hipotecaria para
-						estimar el monto al que podrías acceder, las
-						mensualidades y los plazos, considerando las condiciones
-						del mercado mexicano.
-					</CreditStep>
+						<div>
+							<i class="ri-cash-fill text-4xl step-one-icon"></i>
+						</div>
 
-					<CreditStep
-						number="02"
-						title="Precalifícate sin complicaciones"
-					>
-						Llena nuestro breve formulario en línea para conocer tus
-						opciones de crédito y qué productos se ajustan mejor a
-						tu perfil en México.
-					</CreditStep>
-
-					<CreditStep number="03" title="Arma tu expediente">
-						Te daremos una lista clara de los documentos que
-						necesitarás (comprobantes de ingresos, identificación
-						oficial, etc.) para tu solicitud en el sistema bancario
-						mexicano.
-					</CreditStep>
-
-					<CreditStep number="04" title="Valuación y aprobación">
-						Nosotros coordinaremos la valuación de la propiedad que
-						te interesa y gestionaremos la aprobación final de tu
-						crédito hipotecario con las instituciones financieras.
-					</CreditStep>
-
-					<CreditStep number="05" title="Firma y estrena">
-						Finalmente, coordinaremos la firma de las escrituras
-						ante un notario público. ¡Y listo! Estarás oficialmente
-						estrenando tu hogar en México.
-					</CreditStep>
+						<div>
+							<h3 class="text-cyan-900 font-semibold">Simula tu crédito</h3>
+							<p class="text-zinc-700 text-sm">
+								Llena un formulario rápido y descubre cuánto puedes obtener.
+							</p>
+						</div>
+					</div>
 				</section>
 			</div>
 		</section>
@@ -411,5 +305,11 @@ const title =
 		background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 		padding: 2rem;
 		border-radius: 1rem;
+	}
+
+	.step-one-icon {
+		background: linear-gradient( 75.1deg,  rgba(34,126,34,1) 6%, rgba(99,226,17,1) 84.3% );
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 </style>
