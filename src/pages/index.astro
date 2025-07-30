@@ -198,18 +198,55 @@ const title =
 						Tu crédito hipotecario en 5 pasos sencillos
 					</h2>
 				</header>
-
-				<section>
-					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5">
+				
+				<section class="grid gap-y-3">
+					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
 
 						<div>
-							<i class="ri-cash-fill text-4xl step-one-icon"></i>
+							<i class="ri-cash-fill text-4xl step-icon step-icon--one"></i>
 						</div>
 
 						<div>
-							<h3 class="text-cyan-900 font-semibold">Simula tu crédito</h3>
-							<p class="text-zinc-700 text-sm">
+							<h3 class="text-cyan-900 font-semibold flex items-center gap-1">
+								Simula tu crédito
+								<i class="ri-arrow-down-double-line"></i>
+							</h3>
+							<p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
 								Llena un formulario rápido y descubre cuánto puedes obtener.
+							</p>
+						</div>
+					</div>
+
+					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
+
+						<div>
+							<i class="ri-phone-fill text-4xl step-icon step-icon--two"></i>
+						</div>
+
+						<div>
+							<h3 class="text-cyan-900 font-semibold flex items-center gap-1">
+								Habla con tu asesor
+								<i class="ri-arrow-down-double-line"></i>
+							</h3>
+							<p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
+								Te explicamos las opciones de crédito y te ayudamos a tomar la mejor decisión.
+							</p>
+						</div>
+					</div>
+
+					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
+
+						<div>
+							<i class="ri-home-smile-fill text-4xl step-icon step-icon--three"></i>
+						</div>
+
+						<div>
+							<h3 class="text-cyan-900 font-semibold flex items-center gap-1">
+								Estrena tu casa
+								<i class="ri-arrow-down-double-line"></i>
+							</h3>
+							<p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
+								Te acompañamos en cada paso para que tengas la tranquilidad de que todo está bajo control.
 							</p>
 						</div>
 					</div>
@@ -307,9 +344,62 @@ const title =
 		border-radius: 1rem;
 	}
 
-	.step-one-icon {
+	.step-icon--one {
 		background: linear-gradient( 75.1deg,  rgba(34,126,34,1) 6%, rgba(99,226,17,1) 84.3% );
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}
+
+	.step-icon--two {
+		background: linear-gradient( 109.6deg,  rgba(166,64,221,1) 21.2%, rgba(102,165,235,1) 74.4% );
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.step-icon--three {
+		background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,105,148,1) 15.6%, rgba(0,163,217,1) 51.9%, rgba(0,194,226,1) 81% );
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.step-active {
+		overflow: visible;
+	}
+
+	.step-text--active {
+		max-height: 300px;
+		opacity: 1;
+	}
 </style>
+
+<script>
+	const steps = document.querySelectorAll('.step');
+
+	console.log(steps);
+
+	steps.forEach(step => {
+
+		const stepIcon = step.querySelector('.step-icon') as HTMLElement;
+		const stepText = step.querySelector('.step-text') as HTMLElement;
+
+		step.addEventListener('click', (e) => {
+			// Si el paso actual ya está activo, solo lo cierra
+			if (step.classList.contains('step-active')) {
+				step.classList.remove('step-active');
+				stepText.classList.remove('step-text--active');
+				return;
+			}
+			
+			// Cerrar todos los otros acordeones
+			steps.forEach(otherStep => {
+				otherStep.classList.remove('step-active');
+				const otherStepText = otherStep.querySelector('.step-text') as HTMLElement;
+				otherStepText.classList.remove('step-text--active');
+			});
+			
+			// Abrir el acordeón actual
+			step.classList.add('step-active');
+			stepText.classList.add('step-text--active');
+		});
+	});
+</script>
