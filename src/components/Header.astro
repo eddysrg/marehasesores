@@ -4,7 +4,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 ---
 
 <header class="header">
-    <section class="header__container">
+    <section class="header__container contenedor">
         <div class="header__logo-container">
             <LogoBlack width={70} height={50} />
     
@@ -79,11 +79,9 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             </ul>
         </nav>
     
-        <div class="header__simula-credito">
-            <a href="#" class="header__simula-credito-link">
-                ¡Simula tu crédito gratis!
-            </a>
-        </div>
+        <a href="#" class="header__simula-credito-link">
+            ¡Simula tu crédito gratis!
+        </a>
     </section>
 </header>
 
@@ -203,7 +201,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         color: #ffd700;
     }
 
-    .header__simula-credito {
+    .header__simula-credito-link {
         display: none;
     }
 
@@ -214,8 +212,6 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 90%;
-            margin-inline: auto;
         }
 
         .header__logo-container {
@@ -277,13 +273,13 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         }
     }
 
-    @media screen and (width >= 1280px) {
+    @media (width >= 1280px) {
 
-        .header__simula-credito {
+        .header__simula-credito-link {
             display: block;
             background-color: black;
             color: white;
-            padding: 0.8rem 1rem;
+            padding: 0.5rem 1.5rem;
             border-radius: 0.5rem;
         }
 

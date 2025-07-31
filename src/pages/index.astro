@@ -23,6 +23,12 @@ import 'swiper/css/pagination';
 
 import aboutPicture from "../assets/images/about-picture.jpg";
 
+// Importar imágenes de testimonios
+import testimonial01 from "../assets/images/testimonials/testimonial01.jpeg";
+import testimonial02 from "../assets/images/testimonials/testimonial02.jpeg";
+import testimonial03 from "../assets/images/testimonials/testimonial03.jpeg";
+import testimonial04 from "../assets/images/testimonials/testimonial04.jpeg";
+
 const title =
 	"Mareh Asesores - Encuentra la mejor hipoteca para tu hogar con expertos";
 
@@ -31,26 +37,30 @@ const testimonios = [
 	{
 		nombre: "María González",
 		ubicacion: "Guadalajara, Jalisco",
-		texto: "Mareh Asesores me ayudó a encontrar la hipoteca perfecta. El proceso fue muy transparente y profesional. ¡Recomendado 100%!",
-		rating: 5
+		texto: "Al principio tenía muchas dudas, pero desde el principio me explicaron todo muy claro y sin presionarme a decidir. Siempre estuvieron al pendiente y contestaban rápido. Me sentí acompañada en todo el proceso.",
+		rating: 5,
+		image: testimonial01
 	},
 	{
 		nombre: "Carlos Rodríguez",
 		ubicacion: "Monterrey, Nuevo León", 
-		texto: "Gracias a su asesoría, pude comprar mi primera casa. El equipo fue muy paciente y me explicó todo el proceso paso a paso.",
-		rating: 5
+		texto: "Solo puedo decir gracias. Estaba pagando mucho por mi hipoteca y no sabía que podía cambiarla. Me ayudaron a revisar opciones sin compromiso y al final terminé firmando con otro banco con una tasa más baja. Todo fue muy transparente.",
+		rating: 5,
+		image: testimonial02
 	},
 	{
 		nombre: "Ana Martínez",
 		ubicacion: "Querétaro, Querétaro",
-		texto: "Excelente servicio. Me ayudaron a refinanciar mi hipoteca y ahora pago menos mensual. ¡Muy agradecida!",
-		rating: 5
+		texto: "Mi pareja y yo pensábamos que esto de comprar casa iba a ser un caos, pero fue más sencillo de lo que esperábamos. Nos explicaron todo desde cero y nos guiaron paso por paso. Incluso nos ayudaron con los papeles y nos recomendaron notaría.",
+		rating: 5,
+		image: testimonial03
 	},
 	{
 		nombre: "Luis Pérez",
 		ubicacion: "Puebla, Puebla",
-		texto: "Proceso rápido y eficiente. Encontré la mejor tasa de interés gracias a su comparación de opciones.",
-		rating: 5
+		texto: "Pensé que sería más difícil conseguir el crédito con Cofinavit, me explicaron cómo funciona, armaron mi expediente y al final logré comprar mi depa.",
+		rating: 5,
+		image: testimonial04
 	}
 ];
 ---
@@ -58,7 +68,7 @@ const testimonios = [
 <MainLayout title={title}>
 	<main>
 		<section class="mt-24">
-			<div class="hero my-5 w-[90%] mx-auto py-16 rounded-2xl p-5 lg:flex lg:items-center lg:p-20">
+			<div class="hero my-5 contenedor py-16 rounded-2xl p-5 lg:flex lg:items-center lg:p-20">
 				<section>
 					<h1 class="text-white text-3xl font-medium text-center mb-4 lg:text-6xl lg:text-left">
 						Tu nuevo hogar más cerca de lo que <span class="text-cyan-200">imaginas</span>
@@ -73,7 +83,7 @@ const testimonios = [
 					<section class="flex flex-col mt-8 gap-8 lg:flex-row">
 						<button>
 							<a
-								class="bg-white px-4 py-4 rounded-md font-medium"
+								class="bg-white px-4 py-4 xl:py-3 rounded-md font-medium"
 							>
 								Simula tu crédito gratis
 								<i class="ri-arrow-right-up-line"></i>
@@ -97,7 +107,7 @@ const testimonios = [
 		</section>
 
 		<section class="pt-10 lg:pt-20">
-			<div class="w-[90%] mx-auto">
+			<div class="contenedor">
 				<header>
 					<div class="flex justify-center mb-2">
 						<span class="text-xs text-cyan-700 p-2 border border-cyan-700 rounded-md">
@@ -166,7 +176,7 @@ const testimonios = [
 		</section>
 
 		<section class="pt-10 lg:pt-20">
-			<div class="w-[90%] mx-auto">
+			<div class="contenedor">
 				<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5">
 					Todas las opciones de crédito para cada necesidad
 				</h2>
@@ -220,7 +230,7 @@ const testimonios = [
 		</section>
 
 		<section class="pt-10 lg:pt-20 lg:mb-20">
-			<div class="w-[90%] mx-auto">
+			<div class="contenedor">
 				<header>
 					<div class="flex justify-center mb-2">
 						<span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md">
@@ -308,7 +318,7 @@ const testimonios = [
 		</section>
 
 		<section class="pt-10 lg:pt-20">
-			<div class="w-[90%] mx-auto">
+			<div class="contenedor xl:flex xl:items-center xl:justify-between">
 				<header>
 					<span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md block w-fit mb-2">
 						Testimoniales
@@ -322,7 +332,6 @@ const testimonios = [
 					</p>
 				</header>
 
-				<!-- Carrusel de testimonios -->
 				<div class="testimonials-swiper">
 					<div class="swiper-wrapper">
 						{testimonios.map((testimonio) => (
@@ -345,8 +354,8 @@ const testimonios = [
 											<h4 class="font-semibold text-gray-900">{testimonio.nombre}</h4>
 											<p class="text-sm text-gray-500">{testimonio.ubicacion}</p>
 										</div>
-										<div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center">
-											<i class="ri-user-3-line text-cyan-600"></i>
+										<div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center overflow-hidden">
+											<Picture src={testimonio.image} alt="testimonial image" class="w-12 h-12 rounded-full object-cover" />
 										</div>
 									</div>
 								</div>
@@ -354,7 +363,6 @@ const testimonios = [
 						))}
 					</div>
 					
-					<!-- Paginación -->
 					<div class="swiper-pagination"></div>
 				</div>
 			</div>
@@ -530,7 +538,7 @@ const testimonios = [
 		position: relative;
 		margin-top: 1rem;
 		width: 100%;
-		height: 300px;
+		height: 400px;
 		overflow: hidden;	
 	}
 
@@ -562,9 +570,6 @@ const testimonios = [
 				breakpoints: {
 					768: {
 						slidesPerView: 2,
-					},
-					1024: {
-						slidesPerView: 3,
 					},
 				},
 			});

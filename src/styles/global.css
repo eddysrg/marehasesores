@@ -9,16 +9,8 @@ html {
     font-family: var(--font-figtree);
 }
 
-.subtitle {
-    font-size: 24px;
-    margin-bottom: 1rem;
-
-    @media(width >= 1024px) {
-        font-size: 36px;
-    }
-}
-
 .contenedor {
-    width: 80%;
+    width: 90%;
+    max-width: 1280px;
     margin-inline: auto;
 }
