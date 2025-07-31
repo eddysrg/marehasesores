@@ -186,7 +186,7 @@ const title =
 			</div>
 		</section>
 
-		<section class="pt-10 lg:pt-20">
+		<section class="pt-10 lg:pt-20 lg:mb-20">
 			<div class="w-[90%] mx-auto">
 				<header>
 					<div class="flex justify-center mb-2">
@@ -195,21 +195,21 @@ const title =
 						</span>
 					</div>
 					<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5">
-						Tu crédito hipotecario en 5 pasos sencillos
+						Tu crédito hipotecario en solo 3 pasos
 					</h2>
 				</header>
 				
-				<section class="grid gap-y-3">
+				<section class="steps-grid-container">
 					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
 
 						<div>
-							<i class="ri-cash-fill text-4xl step-icon step-icon--one"></i>
+							<i class="ri-cash-fill text-4xl step-icon--one"></i>
 						</div>
 
 						<div>
 							<h3 class="text-cyan-900 font-semibold flex items-center gap-1">
 								Simula tu crédito
-								<i class="ri-arrow-down-double-line"></i>
+								<i class="ri-arrow-down-double-line step-icon-arrow"></i>
 							</h3>
 							<p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
 								Llena un formulario rápido y descubre cuánto puedes obtener.
@@ -217,16 +217,26 @@ const title =
 						</div>
 					</div>
 
+					<div class="hidden step-connector">
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+					</div>
+
 					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
 
 						<div>
-							<i class="ri-phone-fill text-4xl step-icon step-icon--two"></i>
+							<i class="ri-phone-fill text-4xl step-icon--two"></i>
 						</div>
 
 						<div>
 							<h3 class="text-cyan-900 font-semibold flex items-center gap-1">
 								Habla con tu asesor
-								<i class="ri-arrow-down-double-line"></i>
+								<i class="ri-arrow-down-double-line step-icon-arrow"></i>
 							</h3>
 							<p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
 								Te explicamos las opciones de crédito y te ayudamos a tomar la mejor decisión.
@@ -234,16 +244,26 @@ const title =
 						</div>
 					</div>
 
+					<div class="hidden step-connector">
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+						<div class="step-connector-dot"></div>
+					</div>
+
 					<div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
 
 						<div>
-							<i class="ri-home-smile-fill text-4xl step-icon step-icon--three"></i>
+							<i class="ri-home-smile-fill text-4xl step-icon--three"></i>
 						</div>
 
 						<div>
 							<h3 class="text-cyan-900 font-semibold flex items-center gap-1">
 								Estrena tu casa
-								<i class="ri-arrow-down-double-line"></i>
+								<i class="ri-arrow-down-double-line step-icon-arrow"></i>
 							</h3>
 							<p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
 								Te acompañamos en cada paso para que tengas la tranquilidad de que todo está bajo control.
@@ -253,8 +273,6 @@ const title =
 				</section>
 			</div>
 		</section>
-
-		
 
 		<section
 			class="bg-[url('../assets/images/living-room-blue.webp')] bg-no-repeat bg-cover bg-center"
@@ -370,36 +388,86 @@ const title =
 		max-height: 300px;
 		opacity: 1;
 	}
+
+	.steps-grid-container {
+		display: grid;
+		row-gap: 1rem;
+	}
+
+	@media (1280px >= width >= 1024px) {
+
+	}
+
+	@media (width >= 1024px) {
+
+		.step {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.step h3 {
+			justify-content: center;
+		}
+
+		.step-icon-arrow {
+			display: none;
+		}
+
+		.step p {
+			opacity: 1;
+			max-height: 300px;
+			text-align: center;
+			margin-top: 1rem;
+		}
+
+		.steps-grid-container {
+			grid-template-columns: 1fr 150px 1fr 150px 1fr;
+		}
+
+		.step-connector {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+		}
+	
+		.step-connector-dot {
+			width: 5px;
+			height: 5px;
+			background-color: rgb(183, 183, 183);
+			border-radius: 50%;
+		}
+	}
+
+
 </style>
 
 <script>
 	const steps = document.querySelectorAll('.step');
 
-	console.log(steps);
-
 	steps.forEach(step => {
 
-		const stepIcon = step.querySelector('.step-icon') as HTMLElement;
-		const stepText = step.querySelector('.step-text') as HTMLElement;
+		const stepIconArrow = step.querySelector('.step-icon-arrow');
+		const stepText = step.querySelector('.step-text');
 
-		step.addEventListener('click', (e) => {
-			// Si el paso actual ya está activo, solo lo cierra
-			if (step.classList.contains('step-active')) {
-				step.classList.remove('step-active');
-				stepText.classList.remove('step-text--active');
-				return;
-			}
-			
+		step.addEventListener('click', () => {
+
+			const isActive = step.classList.contains('step-active');
+
 			// Cerrar todos los otros acordeones
 			steps.forEach(otherStep => {
 				otherStep.classList.remove('step-active');
-				const otherStepText = otherStep.querySelector('.step-text') as HTMLElement;
-				otherStepText.classList.remove('step-text--active');
+				otherStep.querySelector('.step-icon-arrow')?.classList.remove('ri-arrow-up-double-line');
+				otherStep.querySelector('.step-icon-arrow')?.classList.add('ri-arrow-down-double-line');
+				otherStep.querySelector('.step-text')?.classList.remove('step-text--active');
 			});
+
+			if(!isActive) {
+				step.classList.add('step-active');
+				stepText?.classList.add('step-text--active');
+				stepIconArrow?.classList.add('ri-arrow-up-double-line');
+			}
 			
-			// Abrir el acordeón actual
-			step.classList.add('step-active');
-			stepText.classList.add('step-text--active');
 		});
 	});
 </script>
