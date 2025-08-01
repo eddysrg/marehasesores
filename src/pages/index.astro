@@ -115,7 +115,7 @@ const testimonios = [
 						</span>
 					</div>
 	
-					<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5 lg:mb-10">
+					<h2 class="text-center text-3xl xl:text-4xl 2xl:text-5xl text-cyan-900 font-medium mb-5 lg:mb-10">
 						Más que un crédito, es tranquilidad y las mejores
 						condiciones
 					</h2>
@@ -177,7 +177,7 @@ const testimonios = [
 
 		<section class="pt-10 lg:pt-20">
 			<div class="contenedor">
-				<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5">
+				<h2 class="text-center text-3xl xl:text-4xl 2xl:text-5xl text-cyan-900 font-medium mb-5">
 					Todas las opciones de crédito para cada necesidad
 				</h2>
 				<p class="text-zinc-700 text-center">
@@ -237,7 +237,7 @@ const testimonios = [
 							Pasos
 						</span>
 					</div>
-					<h2 class="text-center text-3xl text-cyan-900 font-medium mb-5">
+					<h2 class="text-center text-3xl xl:text-4xl 2xl:text-5xl text-cyan-900 font-medium mb-5">
 						Tu crédito hipotecario en solo 3 pasos
 					</h2>
 				</header>
@@ -317,14 +317,14 @@ const testimonios = [
 			</div>
 		</section>
 
-		<section class="pt-10 lg:pt-20">
-			<div class="contenedor xl:flex xl:items-center xl:justify-between">
+		<section class="pt-10 lg:py-20 bg-sky-200 testimonials-section">
+			<div class="contenedor xl:flex xl:items-center xl:justify-between xl:gap-10">
 				<header>
 					<span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md block w-fit mb-2">
 						Testimoniales
 					</span>
-					<h2 class="text-3xl text-cyan-900 font-medium mb-5">
-						Historias de éxito: Lo que dicen nuestros clientes
+					<h2 class="text-3xl xl:text-4xl 2xl:text-6xl text-cyan-900 font-medium mb-5 leading-snug">
+						Historias de éxito: <br class="hidden xl:block"> Lo que dicen nuestros clientes
 					</h2>
 
 					<p class="text-zinc-700">
@@ -546,6 +546,10 @@ const testimonios = [
 		height: 100%;
 	}
 
+	.testimonials-section {
+		background-image: linear-gradient(to top, #F8F9FA 0%, #ace0f9 100%);
+	}
+
 </style>
 
 <script>
@@ -557,11 +561,11 @@ const testimonios = [
 				modules: [Navigation, Pagination, Autoplay],
 				slidesPerView: 1,
 				spaceBetween: 30,
-/* 				loop: false,
+				loop: true,
 				autoplay: {
 					delay: 5000,
 					disableOnInteraction: false,
-				}, */
+				},
 				pagination: {
 					el: '.swiper-pagination',
 					clickable: true,

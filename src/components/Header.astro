@@ -3,7 +3,7 @@ import Logo from "../assets/logomareh_blanco.svg";
 import LogoBlack from "../assets/logomareh_negro.svg";
 ---
 
-<header class="header">
+<header class="header shadow-md">
     <section class="header__container contenedor">
         <div class="header__logo-container">
             <LogoBlack width={70} height={50} />
@@ -92,7 +92,6 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         left: 0;
         right: 0;
         background: #F8F9FA;
-        border-bottom: 1px solid #d6d6d6;
         z-index: 1000;
         transition: all 0.3s ease;
         overflow: hidden;
@@ -102,7 +101,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem 0;
         max-width: 1200px;
         margin: 0 auto;
     }
@@ -150,7 +149,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         display: flex;
         align-items: center;
         padding: 1rem 0;
-        font-weight: 500;
+        font-weight: normal;
         transition: color 0.3s ease;
     }
 
