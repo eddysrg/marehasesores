@@ -317,7 +317,7 @@ const testimonios = [
 			</div>
 		</section>
 
-		<section class="pt-10 lg:py-20 bg-sky-200 testimonials-section">
+		<section class="mt-10 lg:mt-0 pt-10 lg:py-20 bg-sky-200 testimonials-section">
 			<div class="contenedor xl:flex xl:items-center xl:justify-between xl:gap-10">
 				<header>
 					<span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md block w-fit mb-2">
@@ -368,6 +368,54 @@ const testimonios = [
 			</div>
 		</section>
 
+		<section class="bg-zinc-100 py-10">
+			<div class="contenedor">
+
+				<header class="flex flex-col items-center">
+					<span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md block w-fit mb-2">
+						FAQ
+					</span>
+					<h2 class="text-center text-3xl xl:text-4xl 2xl:text-6xl text-cyan-900 font-medium mb-5 leading-snug">
+						Preguntas frecuentes
+					</h2>
+				</header>
+
+				<div class="space-y-5 lg:w-1/2 lg:mx-auto">
+					<Faq title="¿Cobran por la asesoría?">
+						No, la asesoría no tiene ningún costo. Te ayudamos a revisar tus opciones y comparar bancos sin compromiso.
+					</Faq>
+
+					<Faq title="¿Qué necesito para empezar?">
+						Lo básico: tu identificación oficial, comprobantes de ingresos y comprobante de domicilio. Si trabajas por tu cuenta, también se puede, solo necesitas algunos documentos diferentes.
+					</Faq>
+
+					<Faq title="¿Puedo usar mi crédito Infonavit junto con uno de banco?">
+						Sí, se puede. Es lo que se conoce como Cofinavit y es una buena opción para aumentar tu capacidad de compra si no te alcanza solo con Infonavit.
+					</Faq>
+
+					<Faq title="¿Y si ya tengo un crédito, lo puedo cambiar?">
+						Sí. Hay opciones para mejorar la tasa que estás pagando, aunque ya tengas un crédito vigente. Se revisa tu historial y se puede hacer una transferencia a otro banco.
+					</Faq>
+
+					<Faq title="¿Cuánto tardan en darme respuesta?">
+						Depende del banco, pero en promedio, entre 24 y 72 horas una vez que entregas tus documentos completos.
+					</Faq>
+
+					<Faq title="¿Qué pasa si aún no elijo una casa?">
+						No pasa nada, puedes empezar tu trámite y tener tu aprobación lista. Eso te da más seguridad y poder de negociación al buscar vivienda.
+					</Faq>
+
+					<Faq title="¿Puedo tramitar un crédito si soy freelance o tengo ingresos mixtos?">
+						Sí, claro. Se analizan tus ingresos de forma diferente, pero sí es posible. Solo hay que preparar bien tu expediente.
+					</Faq>
+				</div>
+			</div>
+
+			<div class="flex justify-center mt-10">
+				<a href="" class="bg-cyan-700 text-white px-4 py-4 rounded-md font-medium">Centro de ayuda</a>
+			</div>
+		</section>
+
 		<section
 			class="bg-[url('../assets/images/living-room-blue.webp')] bg-no-repeat bg-cover bg-center"
 		>
@@ -391,40 +439,8 @@ const testimonios = [
 				</div>
 			</div>
 		</section>
+		
 
-		<section class="bg-zinc-100">
-			<div class="contenedor">
-				<h2 class="subtitle text-center">Preguntas frecuentes</h2>
-
-				<div class="space-y-5">
-					<Faq title="¿El trámite es gratuito?">
-						Nuestro servicio no tiene ningun costo. Nosotros nos
-						encargamos de gestionar todo el proceso sin que tengas
-						que preocuparte por honorarios adicionales. Queremos que
-						te concentres en lo más importante: encontrar la casa de
-						tus sueños.
-					</Faq>
-
-					<Faq title="¿Cuál es el mejor crédito hipotecario?">
-						El mejor crédito hipotecario depende de tus necesidades.
-						Consideramos tasas, plazos, costos y condiciones para
-						ofrecerte opciones personalizadas. Trabajamos con
-						múltiples instituciones para ayudarte a encontrar la
-						opción más favorable. ¿Tienes dudas o necesidades
-						específicas? Contáctanos, estamos aquí para asesorarte.
-						🏡💼
-					</Faq>
-
-					<Faq title="¿En cuánto tiempo queda autorizado mi crédito?">
-						El tiempo de autorización de un crédito hipotecario
-						varía según la institución y el caso, pero suele tomar
-						entre 24 y 72 horas. En Mareh, agilizamos el proceso y
-						te mantenemos informado en cada paso. ¿Preguntas?
-						¡Estamos aquí para ayudarte! 🕒🏡
-					</Faq>
-				</div>
-			</div>
-		</section>
 	</main>
 </MainLayout>
 
@@ -547,7 +563,7 @@ const testimonios = [
 	}
 
 	.testimonials-section {
-		background-image: linear-gradient(to top, #F8F9FA 0%, #ace0f9 100%);
+		background-image: linear-gradient(to top, #F4F4F5 10%, #ace0f9 100%);
 	}
 
 </style>
