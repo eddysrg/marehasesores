@@ -1,0 +1,118 @@
+---
+import { Picture } from "astro:assets";
+import imageHero from "../../assets/images/house_hero.png";
+---
+
+<style>
+    .hero__section {
+        margin-top: 6rem;
+    }
+
+    .hero {
+        background-image: linear-gradient(
+            -225deg,
+            #473b7b 0%,
+            #3584a7 51%,
+            #30d2be 100%
+        );
+        margin-block: 1.25rem;
+        padding: 2rem;
+        border-radius: 1rem;
+
+        @media (width >= 1024px) {
+            display: flex;
+            align-items: center;
+            padding: 5rem;
+        }
+    }
+
+    .hero__title {
+        color: white;
+        font-size: 1.875rem;
+        font-weight: 500;
+        text-align: center;
+        margin-block-end: 1rem;
+
+        @media (width >= 1024px) {
+            font-size: 3.75rem;
+            text-align: left;
+        }
+    }
+
+    .hero__title-span {
+        color: var(--color-cyan-200);
+    }
+
+    .hero__description {
+        color: var(--color-neutral-100);
+        text-align: center;
+
+        @media (width >= 1024px) {
+            text-align: left;
+        }
+    }
+
+    .hero__btns-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 2rem;
+
+        @media (width >= 1024px) {
+            flex-direction: row;
+        }
+    }
+
+    .hero__second-link {
+        color: white;
+        font-weight: 500;
+    }
+
+    .hero__image-container {
+        display: none;
+
+        @media (width >= 1024px) {
+            display: block;
+        }
+    }
+</style>
+
+<section class="hero__section">
+    <div class="hero contenedor">
+        <section>
+            <h1 class="hero__title">
+                Tu nuevo hogar más cerca de lo que <span class="hero__title-span">imaginas</span>
+            </h1>
+            <p class="hero__description">
+                En Mareh Asesores te ayudamos a encontrar el crédito
+                hipotecario ideal para ti. Compara opciones, recibe
+                asesoría personalizada y da el primer paso hacia tu
+                nuevo hogar.
+            </p>
+
+            <section class="hero__btns-container">
+                <button>
+                    <a class="btn">
+                        Simula tu crédito gratis
+                        <i class="ri-arrow-right-up-line"></i>
+                    </a>
+                </button>
+
+                <button>
+                    <a class="hero__second-link">
+                        Conoce más
+                    </a>
+                </button>
+            </section>
+        </section>
+
+        <section class="hero__image-container">
+            <div class="">
+                <Picture src={imageHero} alt="about us image" class="rounded-md mask-b-from-20% lg:mask-b-to-80%" />
+            </div>
+        </section>
+    </div>
+</section>
+
+
+

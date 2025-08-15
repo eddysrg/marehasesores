@@ -1,0 +1,253 @@
+
+<style>
+
+    .steps {
+        padding-top: 2.5rem;
+    }
+
+    @media (width >= 1024px) {
+        .steps {
+            padding-top: 5rem;
+            margin-bottom: 5rem;
+        }
+    }
+
+    .steps__title {
+        text-align: center;
+        font-size: 1.875rem;
+        color: var(--color-cyan-900);
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+    }
+
+    @media (width >= 1280px) {
+        .steps__title {
+            font-size: 2.25rem;
+        }
+    }
+
+    @media (width >= 1536px) {
+        .steps__title {
+            font-size: 3rem;
+        }
+    }
+
+    .step {
+        border: 2px dashed var(--color-zinc-400);
+        border-radius: 6px;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        overflow: hidden;
+    }
+
+    @media (width >= 1024px) {
+        .step {
+			flex-direction: column;
+			align-items: center;
+		}
+    }
+
+    .step__title {
+        color: var(--color-cyan-900);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .step__description {
+        color: var(--color-zinc-700);
+        font-size: 0.875rem;
+        max-height: 0;
+        opacity: 0;
+        transition: all 500ms ease-in-out;
+    }
+
+    .step-icon--one {
+        background: linear-gradient( 75.1deg,  rgba(34,126,34,1) 6%, rgba(99,226,17,1) 84.3% );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+	}
+
+	.step-icon--two {
+		background: linear-gradient( 109.6deg,  rgba(166,64,221,1) 21.2%, rgba(102,165,235,1) 74.4% );
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.step-icon--three {
+		background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,105,148,1) 15.6%, rgba(0,163,217,1) 51.9%, rgba(0,194,226,1) 81% );
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.step-active {
+		overflow: visible;
+	}
+
+	.step-description--active {
+		max-height: 300px;
+		opacity: 1;
+	}
+
+	.steps-grid-container {
+		display: grid;
+		row-gap: 1rem;
+	}
+
+	@media (width >= 1024px) {
+		.step h3 {
+			justify-content: center;
+		}
+
+		.step-icon-arrow {
+			display: none;
+		}
+
+		.step p {
+			opacity: 1;
+			max-height: 300px;
+			text-align: center;
+			margin-top: 1rem;
+		}
+
+		.steps-grid-container {
+			grid-template-columns: 1fr 150px 1fr 150px 1fr;
+		}
+
+		.step-connector {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+		}
+	
+		.step-connector-dot {
+			width: 5px;
+			height: 5px;
+			background-color: rgb(183, 183, 183);
+			border-radius: 50%;
+		}
+	}
+</style>
+
+<section class="steps">
+    <div class="contenedor">
+        <header>
+            <div class="flex justify-center mb-2">
+                <span class="subtitle-span">
+                    Pasos
+                </span>
+            </div>
+            <h2 class="steps__title">
+                Tu crédito hipotecario en solo 3 pasos
+            </h2>
+        </header>
+        
+        <section class="steps-grid-container">
+            <div class="step">
+
+                <div>
+                    <i class="ri-cash-fill text-4xl step-icon--one"></i>
+                </div>
+
+                <div>
+                    <h3 class="step__title">
+                        Simula tu crédito
+                        <i class="ri-arrow-down-double-line step-icon-arrow"></i>
+                    </h3>
+                    <p class="step-description">
+                        Llena un formulario rápido y descubre cuánto puedes obtener.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hidden step-connector">
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+            </div>
+
+            <div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
+
+                <div>
+                    <i class="ri-phone-fill text-4xl step-icon--two"></i>
+                </div>
+
+                <div>
+                    <h3 class="text-cyan-900 font-semibold flex items-center gap-1">
+                        Habla con tu asesor
+                        <i class="ri-arrow-down-double-line step-icon-arrow"></i>
+                    </h3>
+                    <p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
+                        Te explicamos las opciones de crédito y te ayudamos a tomar la mejor decisión.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hidden step-connector">
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+                <div class="step-connector-dot"></div>
+            </div>
+
+            <div class="border-2 border-dashed border-zinc-400 rounded-md p-5 flex items-center gap-5 overflow-hidden step">
+
+                <div>
+                    <i class="ri-home-smile-fill text-4xl step-icon--three"></i>
+                </div>
+
+                <div>
+                    <h3 class="text-cyan-900 font-semibold flex items-center gap-1">
+                        Estrena tu casa
+                        <i class="ri-arrow-down-double-line step-icon-arrow"></i>
+                    </h3>
+                    <p class="text-zinc-700 text-sm max-h-0 opacity-0 transition-all duration-500 ease-in-out step-text">
+                        Te acompañamos en cada paso para que tengas la tranquilidad de que todo está bajo control.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<script>
+    // Funcionalidad de los pasos
+	const steps = document.querySelectorAll('.step');
+
+	steps.forEach(step => {
+
+		const stepIconArrow = step.querySelector('.step-icon-arrow');
+		const stepDescription = step.querySelector('.step-description');
+
+		step.addEventListener('click', () => {
+
+			const isActive = step.classList.contains('step-active');
+
+			// Cerrar todos los otros acordeones
+			steps.forEach(otherStep => {
+				otherStep.classList.remove('step-active');
+				otherStep.querySelector('.step-icon-arrow')?.classList.remove('ri-arrow-up-double-line');
+				otherStep.querySelector('.step-icon-arrow')?.classList.add('ri-arrow-down-double-line');
+				otherStep.querySelector('.step-description')?.classList.remove('step-description--active');
+			});
+
+			if(!isActive) {
+				step.classList.add('step-active');
+				stepDescription?.classList.add('step-description--active');
+				stepIconArrow?.classList.add('ri-arrow-up-double-line');
+			}
+			
+		});
+	});
+</script>

@@ -1,0 +1,29 @@
+---
+import { Picture } from "astro:assets";
+import GrcLogo from "../../assets/grc_logo.svg";
+import realEstate from "../../assets/images/real-estate.jpg";
+---
+
+<section class="mt-10">
+    <div class="grid xl:grid-cols-2">
+        <Picture src={realEstate} alt="Real Estate image" class="w-full h-full object-contain" />
+
+        <div class="p-5 xl:px-20 bg-white">
+            <h2 class="text-center text-3xl xl:text-4xl 2xl:text-6xl text-cyan-900 font-medium my-5 leading-snug">
+                Tu aliado para encontrar tu nuevo hogar
+            </h2>
+
+            <div class="flex justify-center mb-5">
+                <GrcLogo width={70} height={70} />
+            </div>
+
+            <p class="text-center mb-5">
+                Encontrar la propiedad ideal es clave. Por eso, colaboramos con inmobiliarias de confianza que te ayudarán a buscar y encontrar tu casa.
+            </p>
+
+            <div class="flex justify-center">
+                <a href="" class="bg-cyan-700 text-white px-4 py-4 rounded-md font-medium">Conocer más</a>
+            </div>
+        </div>
+    </div>
+</section>

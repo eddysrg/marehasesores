@@ -1,0 +1,80 @@
+---
+import { Picture } from "astro:assets";
+import houseCredit from "../../assets/images/house_credit.png";
+import interest from "../../assets/images/interest.png";
+import billetes from "../../assets/images/billetes.png";
+---
+
+<style>
+    .credit-card:nth-child(1) {
+		background: linear-gradient(90deg, hsla(236, 100%, 8%, 1) 0%, hsla(211, 100%, 28%, 1) 100%);
+		padding: 2rem;
+		border-radius: 1rem;
+	}
+
+	.credit-card:nth-child(2) {
+		background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+		padding: 2rem;
+		border-radius: 1rem;
+	}
+
+	.credit-card:nth-child(3) {
+		background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+		padding: 2rem;
+		border-radius: 1rem;
+	}
+</style>
+
+<section class="pt-10 lg:pt-20">
+    <div class="contenedor">
+        <h2 class="text-center text-3xl xl:text-4xl 2xl:text-5xl text-cyan-900 font-medium mb-5">
+            Todas las opciones de crédito para cada necesidad
+        </h2>
+        <p class="text-zinc-700 text-center">
+            Ya sea que quieras comprar tu nueva casa, invertir o crear
+            un nuevo proyecto
+        </p>
+
+        <section class="space-y-5 md:space-y-0 mt-5 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5">
+            <div class="credit-card relative">
+                <h3 class="text-neutral-100 text-2xl font-medium mb-3">Crédito de adquisición</h3>
+                <p class="text-zinc-200">El camino directo para adquirir el hogar que sueñas.</p>
+
+                <Picture src={houseCredit} alt="house credit" class="w-44 mx-auto" />
+
+                <div class="absolute w-12 h-12 bg-white rounded-md bottom-5 right-5 flex justify-center items-center">
+                    <i class="ri-add-large-line text-xl"></i>
+                </div>
+            </div>	
+
+            <div class="credit-card relative">
+                <h3 class="text-neutral-100 text-2xl font-medium mb-3">Crédito de liquidez</h3>
+                <p class="text-zinc-200">Usa tu propiedad para obtener la liquidez que necesitas para tus proyectos personales o de inversión.</p>
+
+                <Picture src={billetes} alt="house credit" class="w-44 mx-auto" />
+
+                <div class="absolute w-12 h-12 bg-white rounded-md bottom-5 right-5 flex justify-center items-center">
+                    <i class="ri-add-large-line text-xl"></i>
+                </div>
+            </div>
+            
+            <div class="credit-card relative md:col-span-2 lg:col-span-1">
+                <h3 class="text-neutral-100 text-2xl font-medium mb-3">Mejora de hipoteca</h3>
+                <p class="text-zinc-200">Refinancia tu crédito actual y reduce tus pagos mensuales o mejora tu tasa de interés.</p>
+
+                <Picture src={interest} alt="house credit" class="w-44 mx-auto" />
+
+                <div class="absolute w-12 h-12 bg-white rounded-md bottom-5 right-5 flex justify-center items-center">
+                    <i class="ri-add-large-line text-xl"></i>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex justify-center mt-10">
+            <a href="" class="bg-cyan-700 text-white px-4 py-4 rounded-md font-medium">
+                Ver todos los créditos
+                <i class="ri-corner-right-up-fill"></i>
+            </a>
+        </div>
+    </div>
+</section>

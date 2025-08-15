@@ -1,0 +1,73 @@
+---
+import { Picture } from "astro:assets";
+import aboutPicture from "../../assets/images/about-picture.jpg";
+---
+
+<section class="pt-10 lg:pt-20">
+    <div class="contenedor">
+        <header>
+            <div class="flex justify-center mb-2">
+                <span class="text-xs text-cyan-700 p-2 border border-cyan-700 rounded-md">
+                    +10 años de experiencia
+                </span>
+            </div>
+
+            <h2 class="text-center text-3xl xl:text-4xl 2xl:text-5xl text-cyan-900 font-medium mb-5 lg:mb-10">
+                Más que un crédito, es tranquilidad y las mejores
+                condiciones
+            </h2>
+        </header>
+
+        <div class="lg:grid lg:grid-cols-2">
+            <section class="w-52 lg:w-80 xl:w-96 mx-auto">
+                <Picture src={aboutPicture} alt="about us image" class="rounded-md" />
+            </section>
+
+            <section class="space-y-3 mt-10 text-zinc-700">
+                <p>
+                    En <span class="font-semibold text-cyan-700">Mareh Asesores</span>  creemos que un crédito hipotecario no
+                    solo es un trámite financiero: es el paso más importante
+                    para construir tu patrimonio. Por eso, combinamos
+                    experiencia, cercanía y honestidad para ayudarte a tomar
+                    decisiones claras y seguras.
+                </p>
+
+                <p>
+                    Con más de 10 años de experiencia, cientos de clientes
+                    felices y alianzas con los principales bancos en México,
+                    estamos listos para acompañarte.
+                </p>
+
+                <div class="mt-3">
+
+                    <h3 class="font-semibold text-cyan-700">Nuestra promesa:</h3>
+
+                    <ul class="text-sm mt-3 space-y-3 font-medium">
+                        <li>
+                            <i class="ri-check-line text-zinc-400"></i>
+                            Asesoría gratuita y personalizada
+                        </li>
+                        <li>
+                            <i class="ri-check-line text-zinc-400"></i>
+                            Transparencia total
+                        </li>
+                        <li>
+                            <i class="ri-check-line text-zinc-400"></i>
+                            Acompañamiento humano
+                        </li>
+                        <li>
+                            <i class="ri-check-line text-zinc-400"></i>
+                            Resultados reales
+                        </li>
+                        <li>
+                            <i class="ri-check-line text-zinc-400"></i>
+                            Diferentes opciones de acuerdo a tu perfil
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+    </div>
+</section>

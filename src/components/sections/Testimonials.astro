@@ -1,0 +1,145 @@
+---
+import { Picture } from "astro:assets";
+
+// Importar Swiper CSS
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+// Importar imágenes de testimonios
+import testimonial01 from "../../assets/images/testimonials/testimonial01.jpeg";
+import testimonial02 from "../../assets/images/testimonials/testimonial02.jpeg";
+import testimonial03 from "../../assets/images/testimonials/testimonial03.jpeg";
+import testimonial04 from "../../assets/images/testimonials/testimonial04.jpeg";
+
+// Datos de testimonios
+const testimonios = [
+	{
+		nombre: "María González",
+		ubicacion: "Guadalajara, Jalisco",
+		texto: "Al principio tenía muchas dudas, pero desde el principio me explicaron todo muy claro y sin presionarme a decidir. Siempre estuvieron al pendiente y contestaban rápido. Me sentí acompañada en todo el proceso.",
+		rating: 5,
+		image: testimonial01
+	},
+	{
+		nombre: "Carlos Rodríguez",
+		ubicacion: "Monterrey, Nuevo León", 
+		texto: "Solo puedo decir gracias. Estaba pagando mucho por mi hipoteca y no sabía que podía cambiarla. Me ayudaron a revisar opciones sin compromiso y al final terminé firmando con otro banco con una tasa más baja. Todo fue muy transparente.",
+		rating: 5,
+		image: testimonial02
+	},
+	{
+		nombre: "Ana Martínez",
+		ubicacion: "Querétaro, Querétaro",
+		texto: "Mi pareja y yo pensábamos que esto de comprar casa iba a ser un caos, pero fue más sencillo de lo que esperábamos. Nos explicaron todo desde cero y nos guiaron paso por paso. Incluso nos ayudaron con los papeles y nos recomendaron notaría.",
+		rating: 5,
+		image: testimonial03
+	},
+	{
+		nombre: "Luis Pérez",
+		ubicacion: "Puebla, Puebla",
+		texto: "Pensé que sería más difícil conseguir el crédito con Cofinavit, me explicaron cómo funciona, armaron mi expediente y al final logré comprar mi depa.",
+		rating: 5,
+		image: testimonial04
+	}
+];
+---
+
+<style>
+    .testimonials-swiper {
+		--swiper-pagination-color: var(--color-cyan-700);
+		position: relative;
+		margin-top: 1rem;
+		width: 100%;
+		height: 400px;
+		overflow: hidden;	
+	}
+
+	.swiper-slide {
+		height: 100%;
+	}
+
+	.testimonials-section {
+		background-image: linear-gradient(to top, #F8F9FA 10%, #ace0f9 100%);
+	}
+</style>
+
+<section class="mt-10 lg:mt-0 pt-10 lg:py-20 bg-sky-200 testimonials-section">
+    <div class="contenedor xl:flex xl:items-center xl:justify-between xl:gap-10">
+        <header>
+            <span class="text-xs text-cyan-700 px-5 py-2 border border-cyan-700 rounded-md block w-fit mb-2">
+                Testimoniales
+            </span>
+            <h2 class="text-3xl xl:text-4xl 2xl:text-6xl text-cyan-900 font-medium mb-5 leading-snug">
+                Historias de éxito: <br class="hidden xl:block"> Lo que dicen nuestros clientes
+            </h2>
+
+            <p class="text-zinc-700">
+                La satisfacción de nuestros clientes es nuestro mayor orgullo. Conoce cómo hemos ayudado a personas como tú a lograr sus metas.
+            </p>
+        </header>
+
+        <div class="testimonials-swiper">
+            <div class="swiper-wrapper">
+                {testimonios.map((testimonio) => (
+                    <div class="swiper-slide">
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-100">
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    {Array.from({ length: testimonio.rating }).map(() => (
+                                        <i class="ri-star-fill"></i>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-700 mb-4 italic">
+                                "{testimonio.texto}"
+                            </p>
+                            
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">{testimonio.nombre}</h4>
+                                    <p class="text-sm text-gray-500">{testimonio.ubicacion}</p>
+                                </div>
+                                <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center overflow-hidden">
+                                    <Picture src={testimonio.image} alt="testimonial image" class="w-12 h-12 rounded-full object-cover" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Importar Swiper dinámicamente
+	import('swiper').then(({ default: Swiper }) => {
+		import('swiper/modules').then(({ Navigation, Pagination, Autoplay }) => {
+			//Inicialización de Swiper para testimonios
+			const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+				modules: [Navigation, Pagination, Autoplay],
+				slidesPerView: 1,
+				spaceBetween: 30,
+				loop: true,
+				autoplay: {
+					delay: 5000,
+					disableOnInteraction: false,
+				},
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+					
+				},
+				breakpoints: {
+					768: {
+						slidesPerView: 2,
+					},
+				},
+			});
+		});
+	});
+</script>
