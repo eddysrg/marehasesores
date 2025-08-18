@@ -94,7 +94,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         background: #F8F9FA;
         z-index: 1000;
         transition: all 0.3s ease;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     .header__logo-container {
@@ -246,11 +246,11 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             left: 0;
             min-width: 200px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            border-radius: 0 0 8px 8px;
+            border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
+            transform: translateY(20px);
             transition: all 0.3s ease;
         }
 
@@ -258,7 +258,22 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            max-height: unset;
         }
+
+        /* .header__submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            max-height: unset;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+
+        } */
 
         .header__submenu-item {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -266,6 +281,11 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 
         .header__submenu-link {
             padding: 0.75rem 1rem;
+            color: white;
+        }
+
+        .header__submenu-link:hover {
+            color: rgb(198, 198, 198);
         }
 
         .header__nav-arrow {
@@ -296,6 +316,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         private headerNav: HTMLElement | null;
         private menuIcon: HTMLElement | null;
         private submenuLinks: NodeListOf<HTMLElement>;
+        private isDesktop: boolean;
 
         constructor() {
             this.menuBtn = document.getElementById("menuBtn");
@@ -304,8 +325,10 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             this.submenuLinks = document.querySelectorAll(
                 ".header__nav-link--has-submenu",
             );
+            this.isDesktop = window.innerWidth >= 1020;
 
             this.init();
+            this.handleResize();
         }
 
         private init(): void {
@@ -313,14 +336,33 @@ import LogoBlack from "../assets/logomareh_negro.svg";
                 this.menuBtn.addEventListener("click", () => this.toggleMenu());
             }
 
+            //Solo manejar clicks en móvil
             this.submenuLinks.forEach((link) => {
-                link.addEventListener("click", (e) => this.toggleSubmenu(e));
+                link.addEventListener("click", (e) => {
+                    if(!this.isDesktop) {
+                        this.toggleSubmenu(e);
+                    }
+                });
             });
 
             // Cerrar menú al hacer click fuera
             document.addEventListener("click", (e) =>
                 this.handleOutsideClick(e),
             );
+
+            // Manejar el redimensionamiento de ventana
+            window.addEventListener('resize', () => this.handleResize());
+
+        }
+
+        private handleResize() {
+            const wasDesktop = this.isDesktop;
+            this.isDesktop = window.innerWidth >= 1020;
+
+            //Si cambio de movil a desktop o viceversa, resetear el menu
+            if(wasDesktop !== this.isDesktop) {
+                this.closeMenu();
+            }
         }
 
         private toggleMenu(): void {
@@ -342,6 +384,9 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             this.headerNav.classList.add("header__nav--open");
             this.menuIcon?.classList.add("ri-close-large-line");
             this.menuIcon?.classList.remove("ri-menu-3-line");
+
+            //Prevenir el scroll del body cuando el menu esta abierto
+            document.body.style.overflow = "hidden";
         }
 
         private closeMenu(): void {
@@ -351,12 +396,18 @@ import LogoBlack from "../assets/logomareh_negro.svg";
             this.menuIcon?.classList.remove("ri-close-large-line");
             this.menuIcon?.classList.add("ri-menu-3-line");
 
+            //Restaurar el scroll del body
+            document.body.style.overflow = '';
+
             // Cerrar todos los submenús
             this.closeAllSubmenus();
         }
 
         private toggleSubmenu(e: Event): void {
             e.preventDefault();
+
+            //Solo funcionara el codigo si es movil
+            if (this.isDesktop) return;
 
             const link = e.currentTarget as HTMLElement;
             const submenu = link.nextElementSibling as HTMLElement;
