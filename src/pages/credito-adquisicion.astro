@@ -1,0 +1,154 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { Picture } from "astro:assets";
+import houseCredit from "../assets/images/house_credit.png";
+
+const title = 'Crédito de adquisición - Mareh Asesores';
+
+
+---
+
+<style>
+    .hero__section {
+        margin-top: 6rem;
+    }
+
+    .hero__title {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-block-end: 1rem;
+        text-align: center;
+        color: rgb(23, 138, 191);
+    }
+
+    /* .hero__title {
+        color: white;
+        font-size: 1.875rem;
+        font-weight: 500;
+        text-align: center;
+        margin-block-end: 1rem;
+
+        @media (width >= 1024px) {
+            font-size: 3.75rem;
+            text-align: left;
+        }
+    } */
+
+    .hero__image-container {
+        position: relative;
+    }
+
+    .hero__image {
+        width: 70%;
+        margin-inline: auto;
+    }
+
+    .image-background {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        background-image: linear-gradient(to top, #135eff 50%, #07d4db 100%);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-30%) translateY(-10%);
+        z-index: -10;
+    }
+
+    .product-page__title {
+        font-size: 1.5rem;
+        margin-block: 1rem;
+        font-weight: 600;
+        color: rgb(23, 138, 191);
+    }
+
+    /* .benefits__title {
+        font-size: 1.5rem;
+        margin-block: 1rem;
+        font-weight: 600;
+    } */
+
+    .disco-list-style {
+        list-style: disc;
+        list-style-position: inside;
+    }
+</style>
+
+<MainLayout title={title}>
+    <main>
+        <section class="hero__section contenedor">
+            <h1 class="hero__title">Crédito de Adquisición</h1>
+
+            <p class="hero__description">
+                Comprar tu casa es una de las decisiones más importantes de tu vida, y en Mareh te acompañamos en todo el proceso. Te ayudamos a elegir el crédito hipotecario que más te conviene para que pagues menos intereses y tengas mensualidades cómodas.
+            </p>
+
+            <div class="hero__image-container">
+                <Picture src={houseCredit} alt="House image" class="hero__image" />
+
+                <div class="image-background"></div>
+            </div>
+        </section>  
+
+        <section class="benefits contenedor">
+            <h2 class="benefits__title product-page__title">Beneficios</h2>
+
+            <ul class="benefits__list">
+                <li>
+                    Acceso a tasas preferenciales con los principales bancos.
+                </li>
+                <li>
+                    Acompañamiento en todo el trámite hasta la firma.
+                </li>
+                <li>
+                    Te ayudamos a comparar opciones y elegir la mejor.
+                </li>
+                <li>
+                    Posibilidad de usar tu Infonavit o Fovissste para todos.
+                </li>
+            </ul>
+        </section>
+
+        <section class="contenedor">
+            <h2 class="product-page__title">Requisitos básicos</h2>
+
+            <ul class="disco-list-style">
+                <li>
+                    Ser mayor de 18 años.
+                </li>
+                <li>
+                    Identificación oficial vigente.
+                </li>
+                <li>
+                    Comprobante de ingresos (nómina, estados de cuenta o constancia de ingresos).
+                </li>
+                <li>
+                    Historial crediticio sano.
+                </li>
+                <li>
+                    Solicitud de crédito.
+                </li>
+            </ul>
+        </section>
+
+        <section class="contenedor">
+            <h2 class="product-page__title">Características y condiciones</h2>
+
+            <ul class="disco-list-style">
+                <li>
+                    Financiamiento de hasta el 90% del valor de la vivienda (dependiendo del banco).
+                </li>
+                <li>
+                    Plazos de 5 a 20 años.
+                </li>
+                <li>
+                    La vivienda debe estar registrada y en condiciones legales de compraventa.
+                </li>
+                <li>
+                    Se pueden sumar ingresos con tu pareja o familiar directo (crédito mancomunado).
+                </li>
+            </ul>
+        </section>
+    </main>
+</MainLayout>
