@@ -3,6 +3,8 @@ import { Picture } from "astro:assets";
 import houseCredit from "../../assets/images/house_credit.png";
 import interest from "../../assets/images/interest.png";
 import billetes from "../../assets/images/billetes.png";
+
+const isCreditsPage = Astro.url.pathname === '/creditos';
 ---
 
 <style>
@@ -70,11 +72,14 @@ import billetes from "../../assets/images/billetes.png";
             </div>
         </section>
 
-        <div class="flex justify-center mt-10">
-            <a href="" class="bg-cyan-700 text-white px-4 py-4 rounded-md font-medium">
-                Ver todos los créditos
-                <i class="ri-corner-right-up-fill"></i>
-            </a>
-        </div>
+        {!isCreditsPage &&
+            <div class="flex justify-center mt-10">
+                <a href="/creditos" class="bg-cyan-700 text-white px-4 py-4 rounded-md font-medium">
+                    Ver todos los créditos
+                    <i class="ri-corner-right-up-fill"></i>
+                </a>
+            </div>
+        }
+
     </div>
 </section>

@@ -99,7 +99,7 @@ import imageHero from "../../assets/images/house_hero.png";
                 </button>
 
                 <button>
-                    <a class="hero__second-link">
+                    <a href="#spanAbout" class="hero__second-link">
                         Conoce más
                     </a>
                 </button>
@@ -114,5 +114,17 @@ import imageHero from "../../assets/images/house_hero.png";
     </div>
 </section>
 
-
-
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = e.target as HTMLAnchorElement;
+            const href = target.getAttribute('href');
+            if (href) {
+                document.querySelector(href)?.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>

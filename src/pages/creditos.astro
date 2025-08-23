@@ -1,0 +1,77 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Products from "../components/sections/Products.astro";
+
+const title = "Créditos Hipotecarios - Mareh Asesores";
+const description = "Conoce los diferentes tipos de créditos hipotecarios en México: adquisición, mejora de hipoteca y liquidez. Compara opciones y recibe asesoría gratuita con expertos.";
+const url = Astro.url.href;
+---
+
+<MainLayout title={title} description={description} url={url}>
+    <section class="mt-24 credits-hero contenedor">
+        <div class="p-8">
+            <div class="credits-hero__span-container">
+                <span class="credits-hero__span">Creditos Hipotecarios</span>
+            </div>
+            <h1 class="credits-hero__title">Encuentra el crédito hipotecario que mejor se adapta a ti</h1>
+            <p class="credits-hero__description">Compara y conoce las opciones que tenemos para ti: adquisición de vivienda, mejora de hipoteca y liquidez</p>
+        </div>
+    </section>
+    
+    <section class="contenedor mb-10">
+        <Products />
+    </section>
+</MainLayout>
+
+<style>
+    .credits-hero {
+        background-image: linear-gradient( 179.1deg,  rgba(0,98,133,1) -1.9%, rgba(0,165,198,1) 91.8% );
+        border-radius: 12px;
+    }
+
+    .credits-hero__span-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .credits-hero__span {
+        display: block;
+        text-align: center;
+        border: 1px solid white;
+        color: white;
+        font-weight: 600;
+        padding: .8rem;
+        border-radius: 6px;
+        font-size: 12px;
+    }
+    
+    .credits-hero__title {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-block-end: 1rem;
+        text-align: center;
+        color: white;
+    }
+
+    @media (width >= 1024px) {
+        .credits-hero__title {
+            text-align: left;
+        }
+    }
+
+    @media (width >= 1440px) {
+        .credits-hero__title {
+            font-size: 2.8rem;
+        }
+
+        .hero__description {
+            font-size: 1.12rem;
+        }
+    }
+
+    .credits-hero__description {
+        text-align: center;
+        color: rgb(237, 237, 237);
+    }
+</style>
