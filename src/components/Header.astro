@@ -6,7 +6,9 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 <header class="header border-b border-zinc-300">
     <section class="header__container contenedor">
         <div class="header__logo-container">
-            <LogoBlack width={70} height={50} />
+            <a href="/">
+                <LogoBlack width={70} height={50} />
+            </a>
     
             <button class="header__menu-btn" id="menuBtn" aria-label="Abrir menú">
                 <i class="ri-menu-3-line text-2xl" id="menuIcon"></i>
@@ -16,7 +18,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
         <nav class="header__nav" id="headerNav">
             <ul class="header__nav-list">
                 <li class="header__nav-item">
-                    <a href="#" class="header__nav-link">Inicio</a>
+                    <a href="/" class="header__nav-link">Inicio</a>
                 </li>
                 <li class="header__nav-item header__nav-item--has-submenu">
                     <a href="#" class="header__nav-link header__nav-link--has-submenu">
@@ -297,7 +299,7 @@ import LogoBlack from "../assets/logomareh_negro.svg";
 
         .header__simula-credito-link {
             display: block;
-            background-color: black;
+            background-color: var(--color-cyan-700);
             color: white;
             padding: 0.8rem 1.5rem;
             border-radius: 0.5rem;

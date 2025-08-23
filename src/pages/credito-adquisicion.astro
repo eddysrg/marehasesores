@@ -1,16 +1,25 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Steps from "../components/sections/Steps.astro";
 import { Picture } from "astro:assets";
 import houseCredit from "../assets/images/house_credit.png";
+import Faqs from "../components/sections/Faqs.astro";
 
 const title = 'Crédito de adquisición - Mareh Asesores';
-
-
 ---
 
 <style>
     .hero__section {
         margin-top: 6rem;
+    }
+    
+    @media (width >= 1024px) {
+        .hero__section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            padding-block-start: 3rem;
+        }
     }
 
     .hero__title {
@@ -18,7 +27,23 @@ const title = 'Crédito de adquisición - Mareh Asesores';
         font-weight: 500;
         margin-block-end: 1rem;
         text-align: center;
-        color: rgb(23, 138, 191);
+        color: #104e64;
+    }
+
+    @media (width >= 1024px) {
+        .hero__title {
+            text-align: left;
+        }
+    }
+
+    @media (width >= 1440px) {
+        .hero__title {
+            font-size: 2.8rem;
+        }
+
+        .hero__description {
+            font-size: 1.12rem;
+        }
     }
 
     /* .hero__title {
@@ -39,8 +64,20 @@ const title = 'Crédito de adquisición - Mareh Asesores';
     }
 
     .hero__image {
-        width: 70%;
+        max-width: 14.8rem;
         margin-inline: auto;
+    }
+
+    @media (width >= 1024px) {
+        .hero__image {
+            max-width: 20rem;
+        }
+    }
+
+    @media (width >= 1440px) {
+        .hero__image {
+            max-width: 25rem;
+        }
     }
 
     .image-background {
@@ -56,11 +93,18 @@ const title = 'Crédito de adquisición - Mareh Asesores';
         z-index: -10;
     }
 
+    @media (width >= 1024px) {
+        .image-background {
+            width: 300px;
+            height: 300px;
+        }
+    }
+
     .product-page__title {
         font-size: 1.5rem;
         margin-block: 1rem;
         font-weight: 600;
-        color: rgb(23, 138, 191);
+        color: #104e64;
     }
 
     /* .benefits__title {
@@ -78,11 +122,13 @@ const title = 'Crédito de adquisición - Mareh Asesores';
 <MainLayout title={title}>
     <main>
         <section class="hero__section contenedor">
-            <h1 class="hero__title">Crédito de Adquisición</h1>
-
-            <p class="hero__description">
-                Comprar tu casa es una de las decisiones más importantes de tu vida, y en Mareh te acompañamos en todo el proceso. Te ayudamos a elegir el crédito hipotecario que más te conviene para que pagues menos intereses y tengas mensualidades cómodas.
-            </p>
+            <section>
+                <h1 class="hero__title">Crédito de Adquisición</h1>
+    
+                <p class="hero__description">
+                    Comprar tu casa es una de las decisiones más importantes de tu vida , y en Mareh te acompañamos en todo el proceso. Te ayudamos a elegir el crédito hipotecario que más te conviene para que pagues menos intereses y tengas mensualidades cómodas.
+                </p>
+            </section>
 
             <div class="hero__image-container">
                 <Picture src={houseCredit} alt="House image" class="hero__image" />
@@ -94,7 +140,7 @@ const title = 'Crédito de adquisición - Mareh Asesores';
         <section class="benefits contenedor">
             <h2 class="benefits__title product-page__title">Beneficios</h2>
 
-            <ul class="benefits__list">
+            <ul class="disco-list-style">
                 <li>
                     Acceso a tasas preferenciales con los principales bancos.
                 </li>
@@ -150,5 +196,10 @@ const title = 'Crédito de adquisición - Mareh Asesores';
                 </li>
             </ul>
         </section>
+
+        <Steps />
+
+        <Faqs />
+
     </main>
 </MainLayout>

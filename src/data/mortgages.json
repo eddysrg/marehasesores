@@ -1,0 +1,103 @@
+{
+    "mortgages": [
+        {
+            "id": "adquisicion",
+            "title": "Crédito de Adquisición",
+            "slug": "adquisicion",
+            "category": "vivienda",
+            "shortDescription": "Financia la compra de tu casa propia con las mejores condiciones del mercado",
+            "description": "Nuestro crédito de adquisición te permite comprar la vivienda de tus sueños con tasas competitivas, plazos flexibles y acompañamiento personalizado durante todo el proceso.",
+            "benefits": [
+                "Acceso a tasas preferenciales con los principales bancos.",
+                "Hasta 30 años para pagar.",
+                "Financiamiento hasta el 90% del valor.",
+                "Sin penalizaciones por pago anticipado.",
+                "Posibilidad de usar tu Infonavit o Fovissste para todos."
+            ],
+            "requirements": [
+                "Ser mayor de 18 años.",
+                "Identificación oficial vigente.",
+                "Comprobante de ingresos (Nómina, estados de cuenta, etc).",
+                "Historial crediticio sano.",
+                "Solicitud de crédito."
+            ],
+            "features": [
+                "Financiamiento de hasta el 90% del valor de la vivienda (dependiendo del banco).",
+                "Plazos de 5 a 20 años.",
+                "La vivienda debe estar registrada y en condiciones legales de compraventa.",
+                "Se pueden sumar ingresos con tu pareja o familiar directo (crédito mancomunado)."
+            ],
+            "ctaText": "Solicitar Crédito",
+            "image": "../../assets/images/house_credit.png",
+            "color": "#2563eb",
+            "featured": true,
+            "active": true
+        },
+        {
+            "id": "liquidez",
+            "title": "Crédito de Liquidez",
+            "slug": "liquidez",
+            "category": "vivienda",
+            "shortDescription": "Libera el capital de tu vivienda para nuevos proyectos e inversiones",
+            "description": "Si necesitas dinero para invertir, pagar deudas o hacer crecer tu negocio, puedes usar tu casa ya pagada (o casi pagada) como garantía para obtener un crédito de liquidez.",
+            "benefits": [
+                "Obtén una suma importante de dinero con tasas más bajas que un préstamo personal.",
+                "Usa el dinero en lo que necesites: consolidar deudas, invertir, estudios, viajes, etc.",
+                "Plazos cómodos para pagar.",
+                "Mantienes la propiedad de tu casa."
+            ],
+            "requirements": [
+                "Ser propietario de inmueble libre de gravamen.",
+                "Edad mínima 25 años, máxima 70 años.",
+                "Escrituras inscritas en el Registro Público de la Propiedad.",
+                "Ingresos comprobables mínimos $30,000.",
+                "Identificación oficial vigente.",
+                "Comprobante de ingresos."
+            ],
+            "features": [
+                "Financiamiento de hasta el 70% del valor de la vivienda.",
+                "Plazos desde 5 hasta 15 años.",
+                "El inmueble queda en garantía mientras dure el crédito.",
+                "El banco solicita avalúo actualizado y verificación legal de la propiedad."
+            ],
+            "ctaText": "Solicitar Crédito",
+            "image": "../../assets/images/billetes.png",
+            "color": "#2563eb",
+            "featured": true,
+            "active": true
+        },
+        {
+            "id": "mejora-hipoteca",
+            "title": "Mejora de hipoteca",
+            "slug": "mejora-hipoteca",
+            "category": "vivienda",
+            "shortDescription": "Financia la compra de tu casa propia con las mejores condiciones del mercado",
+            "description": "Si necesitas dinero para invertir, pagar deudas o hacer crecer tu negocio, puedes usar tu casa ya pagada (o casi pagada) como garantía para obtener un crédito de liquidez.",
+            "benefits": [
+                "Acceso a tasas preferenciales con los principales bancos.",
+                "Hasta 30 años para pagar.",
+                "Financiamiento hasta el 90% del valor.",
+                "Sin penalizaciones por pago anticipado.",
+                "Posibilidad de usar tu Infonavit o Fovissste para todos."
+            ],
+            "requirements": [
+                "Ser mayor de 18 años.",
+                "Identificación oficial vigente.",
+                "Comprobante de ingresos (Nómina, estados de cuenta, etc).",
+                "Historial crediticio sano.",
+                "Solicitud de crédito."
+            ],
+            "features": [
+                "Financiamiento de hasta el 90% del valor de la vivienda (dependiendo del banco).",
+                "Plazos de 5 a 20 años.",
+                "La vivienda debe estar registrada y en condiciones legales de compraventa.",
+                "Se pueden sumar ingresos con tu pareja o familiar directo (crédito mancomunado)."
+            ],
+            "ctaText": "Solicitar Crédito",
+            "image": "../../assets/images/interest.png",
+            "color": "#2563eb",
+            "featured": true,
+            "active": true
+        }
+    ]
+}
