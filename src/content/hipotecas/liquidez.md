@@ -1,7 +1,7 @@
 ---
 title: "Crédito de Liquidez"
 shortDescription: "Libera el capital de tu vivienda para nuevos proyectos e inversiones"
-description: "Nuestro crédito de adquisición te permite comprar la vivienda de tus sueños con tasas competitivas, plazos flexibles y acompañamiento personalizado durante todo el proceso."
+description: "Si necesitas dinero para invertir, pagar deudas o hacer crecer tu negocio, puedes usar tu casa ya pagada (o casi pagada) como garantía para obtener un crédito de liquidez."
 category: "liquidez"
 tasaDesde: 9.2
 tasaHasta: 13.5

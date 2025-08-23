@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 
-import MortgageLayout from "../../layouts/MortgageLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 import Steps from "../../components/sections/Steps.astro";
 import Faqs from "../../components/sections/Faqs.astro";
 import Picture from "astro/components/Picture.astro";
@@ -14,12 +14,15 @@ export async function getStaticPaths() {
         props: { mortgage },
     }));
 }
-
 const { mortgage } = Astro.props;
 const { Content } = await render(mortgage);
+
+const title = `${mortgage.data.title} - Mareh Asesores`;
+const description = mortgage.data.shortDescription;
+const url = Astro.url.href;
 ---
 
-<MortgageLayout>
+<MainLayout title={title} description={description} url={url}>
     <main>
         <section class="hero__section contenedor">
             <section>
@@ -75,7 +78,7 @@ const { Content } = await render(mortgage);
 
         <Faqs />
     </main>
-</MortgageLayout>
+</MainLayout>
 
 <style>
     .hero__section {

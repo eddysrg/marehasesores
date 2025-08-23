@@ -1,7 +1,7 @@
 ---
 title: "Mejora de Hipoteca"
 shortDescription: "Mejora las condiciones de tu crédito actual y reduce tus pagos mensuales"
-description: "Si necesitas dinero para invertir, pagar deudas o hacer crecer tu negocio, puedes usar tu casa ya pagada (o casi pagada) como garantía para obtener un crédito de liquidez."
+description: "Si ya tienes un crédito hipotecario pero sientes que estás pagando de más, la mejora de hipoteca es para ti. Te ayudamos a cambiar tu hipoteca a otro banco con mejores condiciones y a reducir tus mensualidades."
 category: "refinanciamiento"
 tasaDesde: 8.2
 tasaHasta: 11.8
