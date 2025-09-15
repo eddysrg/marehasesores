@@ -1,0 +1,286 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+
+
+---
+
+<style>
+
+    .simulator__success-message-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .simulator__success-message {
+        background-color: rgb(141, 255, 192);
+        color: rgb(2, 145, 49);
+        border: 1px solid rgb(2, 145, 49);
+        border-radius: 6px;
+        margin-block: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .simulator__link-success {
+        font-weight: 500;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: .5rem;
+    }
+
+    .simulator__title {
+        color: #104e64;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .simulator__wrap {
+        width: 90%;
+        max-width: 575px;
+        margin-inline: auto;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border-radius: 6px;
+        background-color: rgb(242, 242, 242);
+        box-shadow: 2px 8px 21px 0px rgba(0,0,0,0.37);
+    }
+
+    .simulator-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .simulator-form__container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .simulator__label {
+        font-weight: 500;
+        color: #104e64;
+        font-size: 14px;
+
+    }
+
+    .simulator__input-text {
+        border: 1px solid rgb(184, 184, 184);
+        padding: 8px;
+        border-radius: 6px;
+        background-color: white;
+    }
+
+    .simulator-form__error {
+        color: rgb(188, 2, 2);
+        font-size: 12px;
+        background-color: rgb(255, 159, 159);
+        border: 1px solid rgb(188, 2, 2);
+        padding: 5px;
+        border-radius: 3px;
+    }
+
+    .simulator-form__btn {
+        background-color: #0F4E64;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+
+<MainLayout>
+    <section>
+        <div class="mt-24 contenedor">
+            <h1 class="simulator__title">Simulador de crédito hipotecario</h1>
+            <div class="simulator__success-message-container">
+                <p class="simulator__success-message">Datos enviados con éxito, en breve recibiras la información en tu correo</p>
+
+                <a href="/" class="simulator__link-success">Volver al Inicio<i class="ri-arrow-go-back-line"></i></a>
+            </div>
+        </div>
+
+        <div class="simulator__wrap">
+            <form class="simulator-form" id="simulatorForm">
+                <input type="text" name="website" style="display: none;" tabindex="-1">
+                <div class="simulator-form__container">
+                    <label for="housingValue" class="simulator__label"
+                        >Valor de la vivienda a adquirir (Redondee Montos)</label
+                    >
+                    <input
+                        type="text"
+                        name="housing_value"
+                        id="housingValue"
+                        inputmode="numeric"
+                        data-numeric="true"
+                        class="simulator__input-text"
+                    />
+                    <p class="error" id="error-housing_value"></p>
+                </div>
+
+                <div class="simulator-form__container">
+                    <label for="creditAmount" class="simulator__label"
+                        >Monto del crédito (Redondee Montos)</label
+                    >
+                    <input
+                        type="text"
+                        name="credit_amount"
+                        id="creditAmount"
+                        inputmode="numeric"
+                        data-numeric="true"
+                        class="simulator__input-text"
+                    />
+                    <p class="error" id="error-credit_amount"></p>
+                </div>
+
+                <div class="simulator-form__container">
+                    <label for="creditTerm" class="simulator__label">Plazo solicitado (años)</label>
+                    <select name="credit_term" id="creditTerm" class="simulator__input-text">
+                        <option value="">-- Selecciona un plazo --</option>
+                        <option value="1">5</option>
+                        <option value="2">10</option>
+                        <option value="3">15</option>
+                        <option value="4">20</option>
+                        <option value="5">25</option>
+                    </select>
+                    <p class="error" id="error-credit_term"></p>
+                </div>
+
+                <div class="simulator-form__container">
+                    <label for="fullName" class="simulator__label">Nombre completo</label>
+                    <input
+                        type="text"
+                        name="full_name"
+                        id="fullName"
+                        class="simulator__input-text"
+                        placeholder="Juan Lopez Perez"
+                    />
+                    <p class="error" id="error-full_name"></p>
+                </div>
+
+                <div class="simulator-form__container">
+                    <label for="phoneNumber" class="simulator__label">Teléfono de contacto (10 dígitos)</label>
+                    <input
+                        type="tel"
+                        data-numeric="true"
+                        name="phone_number"
+                        id="phoneNumber"
+                        class="simulator__input-text"
+                        placeholder="5610984738"
+                        maxlength="10"
+                    />
+                    <p class="error" id="error-phone_number"></p>
+                </div>
+
+                <div class="simulator-form__container">
+                    <label for="email" class="simulator__label">Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="simulator__input-text"
+                        placeholder="juan_lopez@outlook.com"
+                    />
+                    <p class="error" id="error-email"></p>
+                </div>
+
+                <button type="submit" class="simulator-form__btn">Enviar</button
+                >
+            </form>
+        </div>
+    </section>
+</MainLayout>
+
+<script>
+    const form = document.getElementById("simulatorForm");
+    const numericInputs = document.querySelectorAll(
+        'input[data-numeric="true"]',
+    );
+    const apiUrl = import.meta.env.PUBLIC_API_URL;
+
+    if (form) {
+        form.addEventListener("submit", submitCreditSimulation);
+    }
+
+    async function submitCreditSimulation(e: Event) {
+        e.preventDefault();
+
+        if (!(form instanceof HTMLFormElement)) {
+            console.error("El elemento no es un formulario válido.");
+            return;
+        }
+
+        //Limpiar errores previos
+        document.querySelectorAll(".error")?.forEach((el) => {
+            el.textContent = "";
+            el.classList.remove("simulator-form__error");
+        });
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        try {
+            const response = await fetch(
+                `${apiUrl}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify(data),
+                },
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+                form.reset();
+                displaySuccessMessage();
+            } else {
+                showFieldErrors(result.errors);
+            }
+        } catch (error) {
+            console.error("Error de red o de parsing:", error);
+        }
+    }
+
+    const restricLetters = () => {
+        numericInputs.forEach((input) => {
+            input.addEventListener("input", (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                target.value = target?.value.replace(/\D/g, "");
+            });
+        });
+    };
+
+    restricLetters();
+
+    const showFieldErrors = (errors: Record<string, any>): void => {
+        for (const field in errors) {
+            const errorElement = document.getElementById(`error-${field}`);
+
+            if (errorElement) {
+                errorElement.textContent = errors[field][0];
+                errorElement.classList.add("simulator-form__error");
+            }
+        }
+    };
+
+    const displaySuccessMessage = () => {
+        const messageContainer = document.querySelector('.simulator__success-message-container') as HTMLElement;
+        messageContainer.style.display = 'flex';
+
+        hideForm();
+    };
+
+    const hideForm = () => {
+        const formContainer = document.querySelector('.simulator__wrap') as HTMLElement;
+
+        formContainer.style.display = "none";
+    };
+</script>

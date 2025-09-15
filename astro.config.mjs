@@ -7,4 +7,13 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
+    security: {
+        checkOrigin: true
+    },
+    output: 'static',
+    site: 'https://marehasesores.com',
+    base: '/',
+    build: {
+        assets: 'assets'
+    }
 });
