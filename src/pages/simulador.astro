@@ -1,287 +1,565 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 
-
-
+const WEB3FORMS_ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
 ---
 
-<style>
-
-    .simulator__success-message-container {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .simulator__success-message {
-        background-color: rgb(141, 255, 192);
-        color: rgb(2, 145, 49);
-        border: 1px solid rgb(2, 145, 49);
-        border-radius: 6px;
-        margin-block: 1rem;
-        padding: 0.5rem 1rem;
-    }
-
-    .simulator__link-success {
-        font-weight: 500;
-        margin-bottom: 2rem;
-        display: flex;
-        gap: .5rem;
-    }
-
-    .simulator__title {
-        color: #104e64;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-    }
-
-    .simulator__wrap {
-        width: 90%;
-        max-width: 575px;
-        margin-inline: auto;
-        margin-bottom: 2rem;
-        padding: 1rem;
-        border-radius: 6px;
-        background-color: rgb(242, 242, 242);
-        box-shadow: 2px 8px 21px 0px rgba(0,0,0,0.37);
-    }
-
-    .simulator-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .simulator-form__container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .simulator__label {
-        font-weight: 500;
-        color: #104e64;
-        font-size: 14px;
-
-    }
-
-    .simulator__input-text {
-        border: 1px solid rgb(184, 184, 184);
-        padding: 8px;
-        border-radius: 6px;
-        background-color: white;
-    }
-
-    .simulator-form__error {
-        color: rgb(188, 2, 2);
-        font-size: 12px;
-        background-color: rgb(255, 159, 159);
-        border: 1px solid rgb(188, 2, 2);
-        padding: 5px;
-        border-radius: 3px;
-    }
-
-    .simulator-form__btn {
-        background-color: #0F4E64;
-        color: white;
-        padding: 0.5rem;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-</style>
-
 <MainLayout>
-    <section>
-        <div class="mt-24 contenedor">
-            <h1 class="simulator__title">Simulador de crédito hipotecario</h1>
-            <div class="simulator__success-message-container">
-                <p class="simulator__success-message">Datos enviados con éxito, en breve recibiras la información en tu correo</p>
+    <!-- Web3Forms Client Script (Handles hCaptcha automatically) -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 
-                <a href="/" class="simulator__link-success">Volver al Inicio<i class="ri-arrow-go-back-line"></i></a>
+    <section class="min-h-[80vh] flex flex-col items-center justify-center py-12 px-4 mt-16 lg:mt-24">
+        <!-- Message for people who already submitted -->
+        <div id="cooldown-container" class="hidden w-full max-w-2xl mx-auto text-center p-10 bg-white rounded-2xl shadow-xl border border-gray-100 animate-in zoom-in duration-500">
+            <div class="w-20 h-20 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
             </div>
+            <h2 class="text-2xl font-bold text-[#104e64] mb-4">Solicitud Reciente</h2>
+            <p class="text-gray-600 mb-8">Parece que ya has realizado una simulación recientemente. Para proteger nuestro servicio, limitamos los envíos a uno por día por persona.</p>
+            <a href="/" class="text-[#104e64] font-semibold hover:underline flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Volver al inicio
+            </a>
         </div>
 
-        <div class="simulator__wrap">
-            <form class="simulator-form" id="simulatorForm">
-                <input type="text" name="website" style="display: none;" tabindex="-1">
-                <div class="simulator-form__container">
-                    <label for="housingValue" class="simulator__label"
-                        >Valor de la vivienda a adquirir (Redondee Montos)</label
-                    >
-                    <input
-                        type="text"
-                        name="housing_value"
-                        id="housingValue"
-                        inputmode="numeric"
-                        data-numeric="true"
-                        class="simulator__input-text"
-                    />
-                    <p class="error" id="error-housing_value"></p>
-                </div>
+        <div id="main-simulator-content" class="w-full max-w-2xl mx-auto">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-bold text-[#104e64] mb-4">Simulador de Crédito Hipotecario</h1>
+                <p class="text-gray-600 max-w-md mx-auto">Completa los pasos para obtener una simulación personalizada directamente en tu correo.</p>
+            </div>
 
-                <div class="simulator-form__container">
-                    <label for="creditAmount" class="simulator__label"
-                        >Monto del crédito (Redondee Montos)</label
-                    >
-                    <input
-                        type="text"
-                        name="credit_amount"
-                        id="creditAmount"
-                        inputmode="numeric"
-                        data-numeric="true"
-                        class="simulator__input-text"
-                    />
-                    <p class="error" id="error-credit_amount"></p>
+            <!-- Progress Bar -->
+            <div class="mb-16 relative px-4">
+                <div class="flex justify-between items-center relative z-10">
+                    <div class="step-indicator active flex flex-col items-center relative" data-step="1">
+                        <div class="w-10 h-10 rounded-full bg-[#104e64] text-white flex items-center justify-center font-bold transition-all duration-300 ring-4 ring-cyan-50 shadow-lg">1</div>
+                        <span class="absolute top-12 text-xs font-bold text-[#104e64] uppercase tracking-wider whitespace-nowrap">Crédito</span>
+                    </div>
+                    <div class="step-indicator flex flex-col items-center relative" data-step="2">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold transition-all duration-300 ring-4 ring-transparent">2</div>
+                        <span class="absolute top-12 text-xs font-bold text-gray-400 uppercase tracking-wider whitespace-nowrap">Contacto</span>
+                    </div>
                 </div>
-
-                <div class="simulator-form__container">
-                    <label for="creditTerm" class="simulator__label">Plazo solicitado (años)</label>
-                    <select name="credit_term" id="creditTerm" class="simulator__input-text">
-                        <option value="">-- Selecciona un plazo --</option>
-                        <option value="1">5</option>
-                        <option value="2">10</option>
-                        <option value="3">15</option>
-                        <option value="4">20</option>
-                        <option value="5">25</option>
-                    </select>
-                    <p class="error" id="error-credit_term"></p>
+                <div class="absolute top-5 left-10 right-10 h-1 bg-gray-100 -z-0">
+                    <div id="progress-bar" class="h-full bg-[#104e64] w-0 transition-all duration-500 ease-in-out"></div>
                 </div>
+            </div>
 
-                <div class="simulator-form__container">
-                    <label for="fullName" class="simulator__label">Nombre completo</label>
-                    <input
-                        type="text"
-                        name="full_name"
-                        id="fullName"
-                        class="simulator__input-text"
-                        placeholder="Juan Lopez Perez"
-                    />
-                    <p class="error" id="error-full_name"></p>
+            <!-- Form Container -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-gray-100">
+                <form id="simulatorForm" class="space-y-6">
+                    <!-- Web3Forms Config -->
+                    <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                    <input type="hidden" name="subject" value="Nueva Simulación de Crédito - Mareh" />
+                    <input type="hidden" name="from_name" value="Simulador Mareh" />
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <!-- Step 1: Credit Details -->
+                    <div id="step-1" class="form-step space-y-6 animate-in fade-in duration-500">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="housingValue" class="text-sm font-semibold text-[#104e64]">Valor de la Vivienda</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                                    <input
+                                        type="text"
+                                        name="housing_value"
+                                        id="housingValue"
+                                        placeholder="Ej: 2,500,000"
+                                        inputmode="numeric"
+                                        data-numeric="true"
+                                        class="w-full pl-8 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="creditAmount" class="text-sm font-semibold text-[#104e64]">Monto del Crédito</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                                    <input
+                                        type="text"
+                                        name="credit_amount"
+                                        id="creditAmount"
+                                        placeholder="Ej: 2,000,000"
+                                        inputmode="numeric"
+                                        data-numeric="true"
+                                        class="w-full pl-8 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="monthlyIncome" class="text-sm font-semibold text-[#104e64]">Ingreso Neto Mensual</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                                    <input
+                                        type="text"
+                                        name="monthly_income"
+                                        id="monthlyIncome"
+                                        placeholder="Ej: 35,000"
+                                        inputmode="numeric"
+                                        data-numeric="true"
+                                        class="w-full pl-8 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="creditTerm" class="text-sm font-semibold text-[#104e64]">Plazo del Crédito (Años)</label>
+                                <select 
+                                    name="credit_term" 
+                                    id="creditTerm" 
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all appearance-none bg-no-repeat bg-[right_1rem_center] bg-[length:1em_1em]"
+                                    style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 fill=%22none%22 viewBox=%220%200%2020%2020%22%3E%3Cpath stroke=%22%236b7280%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%221.5%22 d=%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E');"
+                                    required
+                                >
+                                    <option value="" disabled selected>Selecciona un plazo</option>
+                                    <option value="5">5 Años</option>
+                                    <option value="10">10 Años</option>
+                                    <option value="15">15 Años</option>
+                                    <option value="20">20 Años</option>
+                                    <option value="25">25 Años</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="button" id="next-btn" class="w-full bg-[#104e64] hover:bg-[#165d78] text-white font-bold py-4 rounded-xl shadow-lg shadow-cyan-900/20 transition-all flex items-center justify-center gap-2 group">
+                            Siguiente Paso
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Step 2: Personal Details -->
+                    <div id="step-2" class="form-step hidden space-y-6 animate-in slide-in-from-right-4 duration-500">
+                        <div class="space-y-2">
+                            <label for="fullName" class="text-sm font-semibold text-[#104e64]">Nombre Completo</label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="fullName"
+                                placeholder="Juan Pérez López"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all"
+                                required
+                            />
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="email" class="text-sm font-semibold text-[#104e64]">Correo Electrónico</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="ejemplo@correo.com"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all"
+                                    required
+                                />
+                                <p class="text-[11px] text-gray-500 italic mt-1 leading-tight">
+                                    <span class="text-amber-600 font-bold">* Importante:</span> Verifica que tu correo sea correcto; aquí recibirás tu simulación.
+                                </p>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="phoneNumber" class="text-sm font-semibold text-[#104e64]">Teléfono (10 dígitos)</label>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    id="phoneNumber"
+                                    placeholder="5512345678"
+                                    maxlength="10"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#104e64] focus:border-transparent outline-none transition-all"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <!-- hCaptcha Widget (Web3Forms Native Integration) -->
+                        <div class="flex justify-center py-2 h-captcha-container">
+                            <div class="h-captcha" data-captcha="true"></div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <button type="button" id="back-btn" class="flex-1 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold py-4 rounded-xl transition-all border border-gray-200">
+                                Regresar
+                            </button>
+                            <button type="submit" id="submit-btn" class="flex-[2] bg-[#104e64] hover:bg-[#165d78] text-white font-bold py-4 rounded-xl shadow-lg shadow-cyan-900/20 transition-all flex items-center justify-center gap-2 group">
+                                <span id="btn-text">Enviar Simulación</span>
+                                <div id="btn-loader" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div id="success-container" class="hidden text-center space-y-6 py-8 animate-in zoom-in duration-500">
+                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-[#104e64]">¡Solicitud Enviada!</h2>
+                    <p class="text-gray-600 max-w-sm mx-auto">Tu simulación ha sido procesada correctamente. En breve recibirás un correo con todos los detalles.</p>
+                    <div class="pt-4">
+                        <a href="/" class="inline-flex items-center gap-2 text-[#104e64] font-semibold hover:underline group">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Volver al inicio
+                        </a>
+                    </div>
                 </div>
-
-                <div class="simulator-form__container">
-                    <label for="phoneNumber" class="simulator__label">Teléfono de contacto (10 dígitos)</label>
-                    <input
-                        type="tel"
-                        data-numeric="true"
-                        name="phone_number"
-                        id="phoneNumber"
-                        class="simulator__input-text"
-                        placeholder="5610984738"
-                        maxlength="10"
-                    />
-                    <p class="error" id="error-phone_number"></p>
-                </div>
-
-                <div class="simulator-form__container">
-                    <label for="email" class="simulator__label">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        class="simulator__input-text"
-                        placeholder="juan_lopez@outlook.com"
-                    />
-                    <p class="error" id="error-email"></p>
-                </div>
-
-                <button type="submit" class="simulator-form__btn">Enviar</button
-                >
-            </form>
+            </div>
         </div>
     </section>
 </MainLayout>
 
 <script>
-    const form = document.getElementById("simulatorForm");
-    const numericInputs = document.querySelectorAll(
-        'input[data-numeric="true"]',
-    );
-    const apiUrl = import.meta.env.PUBLIC_API_URL;
+    import Swal from 'sweetalert2';
 
-    if (form) {
-        form.addEventListener("submit", submitCreditSimulation);
-    }
+    const form = document.getElementById("simulatorForm") as HTMLFormElement;
+    const step1 = document.getElementById("step-1");
+    const step2 = document.getElementById("step-2");
+    const successContainer = document.getElementById("success-container");
+    const mainContent = document.getElementById("main-simulator-content");
+    const cooldownContainer = document.getElementById("cooldown-container");
+    const nextBtn = document.getElementById("next-btn");
+    const backBtn = document.getElementById("back-btn");
+    const progressBar = document.getElementById("progress-bar");
+    const stepIndicators = document.querySelectorAll(".step-indicator");
+    const numericInputs = document.querySelectorAll('input[data-numeric="true"]');
 
-    async function submitCreditSimulation(e: Event) {
+    // Navigation logic
+    const showStep = (stepNumber: number) => {
+        if (stepNumber === 1) {
+            step1?.classList.remove("hidden");
+            step2?.classList.add("hidden");
+            progressBar!.style.width = "0%";
+            updateIndicators(1);
+        } else {
+            step1?.classList.add("hidden");
+            step2?.classList.remove("hidden");
+            progressBar!.style.width = "100%";
+            updateIndicators(2);
+        }
+    };
+
+    const updateIndicators = (activeStep: number) => {
+        stepIndicators.forEach(indicator => {
+            const step = parseInt(indicator.getAttribute("data-step") || "1");
+            const circle = indicator.querySelector("div");
+            const label = indicator.querySelector("span");
+
+            if (step === activeStep) {
+                circle?.classList.add("bg-[#104e64]", "text-white", "ring-4", "ring-cyan-50", "shadow-lg");
+                circle?.classList.remove("bg-gray-200", "text-gray-500", "ring-transparent");
+                label?.classList.add("text-[#104e64]");
+                label?.classList.remove("text-gray-400");
+            } else if (step < activeStep) {
+                if (circle) {
+                    circle.classList.add("bg-green-500", "text-white");
+                    circle.classList.remove("bg-[#104e64]", "gray-200");
+                    circle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>';
+                }
+            }
+        });
+    };
+
+    nextBtn?.addEventListener("click", () => {
+        const housingValue = (document.getElementById("housingValue") as HTMLInputElement).value;
+        const creditAmount = (document.getElementById("creditAmount") as HTMLInputElement).value;
+        const monthlyIncome = (document.getElementById("monthlyIncome") as HTMLInputElement).value;
+        const creditTerm = (document.getElementById("creditTerm") as HTMLSelectElement).value;
+
+        if (!housingValue || !creditAmount || !monthlyIncome || !creditTerm) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos incompletos',
+                text: 'Por favor completa todos los campos del crédito.',
+                confirmButtonColor: '#104e64'
+            });
+            return;
+        }
+        showStep(2);
+    });
+
+    backBtn?.addEventListener("click", () => showStep(1));
+
+    // Numeric formatting
+    numericInputs.forEach(input => {
+        input.addEventListener("input", (e) => {
+            const target = e.target as HTMLInputElement;
+            let value = target.value.replace(/\D/g, "");
+            if (value) {
+                target.value = new Intl.NumberFormat('es-MX').format(parseInt(value));
+            } else {
+                target.value = "";
+            }
+        });
+    });
+
+    // Whitelist of trusted/known email providers
+    const ALLOWED_DOMAINS = [
+        'gmail.com', 'outlook.com', 'outlook.es', 'hotmail.com', 'hotmail.es',
+        'live.com', 'live.com.mx', 'yahoo.com', 'yahoo.com.mx', 'icloud.com',
+        'me.com', 'proton.me', 'protonmail.com', 'zoho.com', 'gmx.com', 'gmx.es',
+        'aol.com', 'msn.com'
+    ];
+
+    // List of inappropriate words/patterns to block in names
+    const INAPPROPRIATE_NAME_PATTERNS = [
+        'pendejo', 'pendeja', 'puto', 'puta', 'chinga', 'verga', 'pendej', 'sexy', 
+        'muñequita', 'munequita', 'cabron', 'cabrón', 'culo', 'poto', 'mierda',
+        'estupido', 'estúpida', 'baboso', 'tonto', 'pendejito', 'pendejita'
+    ];
+
+    const isValidName = (name: string) => {
+        const cleanName = name.trim().toLowerCase();
+        
+        // Check minimum length
+        if (cleanName.length < 3) {
+            return { valid: false, message: "Por favor ingresa un nombre válido." };
+        }
+
+        // Check for at least two words (Name and Last Name)
+        const words = cleanName.split(/\s+/).filter(word => word.length > 0);
+        if (words.length < 2) {
+            return { valid: false, message: "Por favor ingresa tu nombre completo (Nombre y Apellido)." };
+        }
+
+        // Check for numbers
+        if (/\d/.test(cleanName)) {
+            return { valid: false, message: "Un nombre real no contiene números." };
+        }
+
+        // Check for inappropriate words
+        const hasBadWord = INAPPROPRIATE_NAME_PATTERNS.some(pattern => cleanName.includes(pattern));
+        if (hasBadWord) {
+            return { valid: false, message: "Por favor usa un nombre serio y real para tu simulación." };
+        }
+
+        return { valid: true, message: "" };
+    };
+
+    const isValidEmail = (email: string) => {
+        // Strict regex for general format
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) return { valid: false, message: "Por favor ingresa un formato de correo válido." };
+
+        const [localPart, domain] = email.toLowerCase().split('@');
+        
+        // Check if domain is in the trusted whitelist
+        if (!ALLOWED_DOMAINS.includes(domain)) {
+            return { valid: false, message: "Por favor usa un correo personal válido (Gmail, Outlook, Hotmail, etc.) para asegurar que recibas tu simulación." };
+        }
+
+        // Avoid common fake prefixes
+        const fakePrefixes = ['test', 'correo', 'email', 'asdf', 'hola', 'prueba', 'admin', 'user'];
+        if (fakePrefixes.some(prefix => localPart === prefix || localPart.startsWith(prefix + '123'))) {
+            return { valid: false, message: "Por favor usa un correo electrónico real para recibir tu simulación." };
+        }
+
+        // Check for inappropriate words in the local part of the email
+        const hasBadWord = INAPPROPRIATE_NAME_PATTERNS.some(pattern => localPart.includes(pattern));
+        if (hasBadWord) {
+            return { valid: false, message: "Por favor usa un correo electrónico serio y profesional." };
+        }
+
+        return { valid: true, message: "" };
+    };
+
+    // Check for recent submission (24h cooldown)
+    const checkCooldown = () => {
+        const lastSubmission = localStorage.getItem("mareh_last_submission");
+        if (lastSubmission) {
+            const lastTime = parseInt(lastSubmission);
+            const now = Date.now();
+            const hoursPassed = (now - lastTime) / (1000 * 60 * 60);
+            
+            if (hoursPassed < 24) {
+                mainContent?.classList.add("hidden");
+                cooldownContainer?.classList.remove("hidden");
+                return true;
+            }
+        }
+        return false;
+    };
+
+    // Initialize cooldown check
+    checkCooldown();
+
+    // Form Submission
+    form?.addEventListener("submit", async (e) => {
         e.preventDefault();
+        
+        const btnText = document.getElementById("btn-text");
+        const btnLoader = document.getElementById("btn-loader");
+        const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 
+        const nameInput = document.getElementById("fullName") as HTMLInputElement;
+        const name = nameInput.value.trim();
+        const emailInput = document.getElementById("email") as HTMLInputElement;
+        const email = emailInput.value.trim();
+        const phoneInput = document.getElementById("phoneNumber") as HTMLInputElement;
+        const phone = phoneInput.value.trim();
+        
+        // hCaptcha check (Web3Forms auto-injected hidden field)
+        const hCaptchaResponse = (form.querySelector('[name="h-captcha-response"]') as HTMLInputElement)?.value;
 
-        if (!(form instanceof HTMLFormElement)) {
-            console.error("El elemento no es un formulario válido.");
+        if (!name || !email || !phone) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos incompletos',
+                text: 'Por favor completa tus datos de contacto.',
+                confirmButtonColor: '#104e64'
+            });
             return;
         }
 
-        //Limpiar errores previos
-        document.querySelectorAll(".error")?.forEach((el) => {
-            el.textContent = "";
-            el.classList.remove("simulator-form__error");
-        });
+        // Strict Name Validation
+        const nameCheck = isValidName(name);
+        if (!nameCheck.valid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Nombre no válido',
+                text: nameCheck.message,
+                footer: '<span style="color: #6b7280; font-size: 11px;">Si no estás interesado en una simulación real, por favor no lo intentes.</span>',
+                confirmButtonColor: '#104e64'
+            });
+            nameInput.focus();
+            return;
+        }
+
+        // Strict Email Validation
+        const emailCheck = isValidEmail(email);
+        if (!emailCheck.valid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Correo no válido',
+                text: emailCheck.message,
+                footer: '<span style="color: #6b7280; font-size: 11px;">Si no estás interesado en una simulación real, por favor no lo intentes.</span>',
+                confirmButtonColor: '#104e64'
+            });
+            emailInput.focus();
+            return;
+        }
+
+        // Phone Validation (simple)
+        if (phone.length < 10) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Teléfono incompleto',
+                text: 'Por favor ingresa un teléfono de 10 dígitos.',
+                confirmButtonColor: '#104e64'
+            });
+            phoneInput.focus();
+            return;
+        }
+
+        if (!hCaptchaResponse) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Verificación requerida',
+                text: 'Por favor completa la verificación de seguridad (CAPTCHA).',
+                confirmButtonColor: '#104e64'
+            });
+            return;
+        }
+
+        if (btnText && btnLoader) {
+            btnText.textContent = "Enviando...";
+            btnLoader.classList.remove("hidden");
+            submitBtn.disabled = true;
+        }
 
         const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
         try {
-            const response = await fetch(
-                `${apiUrl}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                    },
-                    body: JSON.stringify(data),
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
                 },
-            );
+                body: json,
+            });
 
-            const result = await response.json();
-
-            if (response.ok) {
-                form.reset();
-                displaySuccessMessage();
+            if (response.status === 200) {
+                localStorage.setItem("mareh_last_submission", Date.now().toString());
+                form.classList.add("hidden");
+                successContainer?.classList.remove("hidden");
+                window.scrollTo({ top: 100, behavior: 'smooth' });
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Simulación enviada!',
+                    text: 'En breve recibirás los resultados en tu correo.',
+                    confirmButtonColor: '#104e64',
+                    timer: 3000
+                });
             } else {
-                showFieldErrors(result.errors);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al enviar',
+                    text: 'Hubo un error al enviar el formulario. Por favor intenta de nuevo.',
+                    confirmButtonColor: '#104e64'
+                });
             }
         } catch (error) {
-            console.error("Error de red o de parsing:", error);
-        }
-    }
-
-    const restricLetters = () => {
-        numericInputs.forEach((input) => {
-            input.addEventListener("input", (e: Event) => {
-                const target = e.target as HTMLInputElement;
-                target.value = target?.value.replace(/\D/g, "");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de red',
+                text: 'Por favor verifica tu conexión.',
+                confirmButtonColor: '#104e64'
             });
-        });
-    };
-
-    restricLetters();
-
-    const showFieldErrors = (errors: Record<string, any>): void => {
-        for (const field in errors) {
-            const errorElement = document.getElementById(`error-${field}`);
-
-            if (errorElement) {
-                errorElement.textContent = errors[field][0];
-                errorElement.classList.add("simulator-form__error");
+        } finally {
+            if (btnText && btnLoader) {
+                btnText.textContent = "Enviar Simulación";
+                btnLoader.classList.add("hidden");
+                submitBtn.disabled = false;
             }
         }
-    };
-
-    const displaySuccessMessage = () => {
-        const messageContainer = document.querySelector('.simulator__success-message-container') as HTMLElement;
-        messageContainer.style.display = 'flex';
-
-        hideForm();
-    };
-
-    const hideForm = () => {
-        const formContainer = document.querySelector('.simulator__wrap') as HTMLElement;
-
-        formContainer.style.display = "none";
-    };
+    });
 </script>
+
+<style>
+    /* Custom animations */
+    .animate-in {
+        animation-duration: 0.5s;
+        animation-fill-mode: both;
+    }
+    
+    .fade-in {
+        animation-name: fadeIn;
+    }
+    
+    .slide-in-from-right-4 {
+        animation-name: slideInRight;
+    }
+    
+    .zoom-in {
+        animation-name: zoomIn;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+        from { transform: translateX(1rem); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.95); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+</style>

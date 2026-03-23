@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     const mortgages = await getCollection("hipotecas");
 
     return mortgages.map((mortgage) => ({
-        params: { slug: mortgage.slug },
+        params: { slug: mortgage.id },
         props: { mortgage },
     }));
 }
